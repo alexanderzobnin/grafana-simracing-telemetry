@@ -68,8 +68,8 @@ func (d *SimracingTelemetryDatasource) QueryData(ctx context.Context, req *backe
 }
 
 type queryModel struct {
-	WithStreaming bool `json:"withStreaming"`
-	Telemetry string `json:"telemetry"`
+	WithStreaming bool   `json:"withStreaming"`
+	Telemetry     string `json:"telemetry"`
 }
 
 func (d *SimracingTelemetryDatasource) query(_ context.Context, pCtx backend.PluginContext, query backend.DataQuery) backend.DataResponse {
@@ -95,10 +95,11 @@ func (d *SimracingTelemetryDatasource) query(_ context.Context, pCtx backend.Plu
 	// If query called with streaming on then return a channel
 	// to subscribe on a client-side and consume updates from a plugin.
 	// Feel free to remove this if you don't need streaming for your datasource.
-	streamPath := qm.Telemetry
-	if streamPath == "" {
-		streamPath = "stream"
-	}
+	//streamPath := qm.Telemetry
+	//if streamPath == "" {
+	//	streamPath = "stream"
+	//}
+	streamPath := "dirt"
 	if qm.WithStreaming {
 		channel := live.Channel{
 			Scope:     live.ScopeDatasource,
@@ -156,15 +157,6 @@ func (d *SimracingTelemetryDatasource) SubscribeStream(_ context.Context, req *b
 func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backend.RunStreamRequest, sender *backend.StreamSender) error {
 	log.DefaultLogger.Info("RunStream called", "request", req)
 
-	// Create the same data frame as for query data.
-	frame := data.NewFrame("response")
-
-	// Add fields (matching the same schema used in QueryData).
-	frame.Fields = append(frame.Fields,
-		data.NewField("time", nil, make([]time.Time, 1)),
-		data.NewField(req.Path, nil, make([]float32, 1)),
-	)
-
 	lastTimeSent := time.Now()
 
 	// Stream data frames periodically till stream closed by Grafana.
@@ -180,18 +172,8 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 				continue
 			}
 
-			telemetryMap := TelemetryFrameToMap(telemetryFrame)
-			value, ok := telemetryMap[req.Path]
-			if !ok {
-				value = telemetryFrame.Speed
-			}
-
-			frame.Fields[0].Set(0, time.Now())
-			frame.Fields[1].Set(0, value)
-			//frame := TelemetryToDataFrame(telemetryFrame)
-
+			frame := TelemetryToDataFrame(telemetryFrame)
 			lastTimeSent = time.Now()
-
 			err := sender.SendFrame(frame, data.IncludeAll)
 			if err != nil {
 				log.DefaultLogger.Error("Error sending frame", "error", err)
