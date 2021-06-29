@@ -1,14 +1,15 @@
 import { DataQuery, DataSourceJsonData } from '@grafana/data';
 
-export interface MyQuery extends DataQuery {
+export interface TelemetryQuery extends DataQuery {
   telemetry?: string;
-  constant: number;
+  source?: string;
   withStreaming: boolean;
 }
 
-export const defaultQuery: Partial<MyQuery> = {
-  constant: 6.5,
-  withStreaming: false,
+export const defaultQuery: Partial<TelemetryQuery> = {
+  telemetry: 'Speed',
+  source: 'dirtRally2',
+  withStreaming: true,
 };
 
 /**

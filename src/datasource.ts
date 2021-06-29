@@ -6,19 +6,19 @@ import {
   parseLiveChannelAddress,
   StreamingFrameOptions,
 } from '@grafana/data';
-import { MyDataSourceOptions, MyQuery } from './types';
+import { MyDataSourceOptions, TelemetryQuery } from './types';
 
 import { DataSourceWithBackend, getGrafanaLiveSrv } from '@grafana/runtime';
 import { Observable, of, merge } from 'rxjs';
 
 let counter = 100;
 
-export class DataSource extends DataSourceWithBackend<MyQuery, MyDataSourceOptions> {
+export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSourceOptions> {
   constructor(instanceSettings: DataSourceInstanceSettings<MyDataSourceOptions>) {
     super(instanceSettings);
   }
 
-  query(request: DataQueryRequest<MyQuery>): Observable<DataQueryResponse> {
+  query(request: DataQueryRequest<TelemetryQuery>): Observable<DataQueryResponse> {
     const queries: Array<Observable<DataQueryResponse>> = [];
     for (const target of request.targets) {
       if (target.hide) {

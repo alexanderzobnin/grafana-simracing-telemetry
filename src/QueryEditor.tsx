@@ -1,25 +1,29 @@
 import { defaults } from 'lodash';
 
-import React, { ChangeEvent, PureComponent, SyntheticEvent } from 'react';
-import { LegacyForms } from '@grafana/ui';
-import { QueryEditorProps } from '@grafana/data';
+import React, { PureComponent, SyntheticEvent } from 'react';
+import {InlineField, InlineSwitch, Select} from '@grafana/ui';
+import {QueryEditorProps, SelectableValue} from '@grafana/data';
 import { DataSource } from './datasource';
-import { defaultQuery, MyDataSourceOptions, MyQuery } from './types';
+import { defaultQuery, MyDataSourceOptions, TelemetryQuery } from './types';
+import {dirtRallyOptions} from "./dirtRallyOptions";
 
-const { FormField, Switch } = LegacyForms;
+export const sourceOptions = [
+  { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
+];
 
-type Props = QueryEditorProps<DataSource, MyQuery, MyDataSourceOptions>;
+type Props = QueryEditorProps<DataSource, TelemetryQuery, MyDataSourceOptions>;
 
 export class QueryEditor extends PureComponent<Props> {
-  onQueryTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { onChange, query } = this.props;
-    onChange({ ...query, telemetry: event.target.value });
+  onTelemetryChange = (option: SelectableValue<string>) => {
+    const { onChange, query, onRunQuery } = this.props;
+    onChange({ ...query, telemetry: option.value });
+    // executes the query
+    onRunQuery();
   };
 
-  onConstantChange = (event: ChangeEvent<HTMLInputElement>) => {
+  onSourceChange = (option: SelectableValue<string>) => {
     const { onChange, query, onRunQuery } = this.props;
-    onChange({ ...query, constant: parseFloat(event.target.value) });
-    // executes the query
+    onChange({ ...query, source: option.value });
     onRunQuery();
   };
 
@@ -32,26 +36,33 @@ export class QueryEditor extends PureComponent<Props> {
 
   render() {
     const query = defaults(this.props.query, defaultQuery);
-    const { telemetry, constant, withStreaming } = query;
+    const { telemetry, source, withStreaming } = query;
 
     return (
       <div className="gf-form">
-        <FormField
-          width={4}
-          value={constant}
-          onChange={this.onConstantChange}
-          label="Constant"
-          type="number"
-          step="0.1"
+        <InlineField label="Source">
+          <Select
+              width={25}
+              options={sourceOptions}
+              value={source}
+              onChange={this.onSourceChange}
+              defaultValue={'dirtRally2'}
+          />
+        </InlineField>
+        <Select
+          width={25}
+          options={dirtRallyOptions}
+          value={telemetry}
+          onChange={this.onTelemetryChange}
+          defaultValue={'Time'}
         />
-        <FormField
-          labelWidth={8}
-          value={telemetry || ''}
-          onChange={this.onQueryTextChange}
-          label="Query Text"
-          tooltip="Not used yet"
-        />
-        <Switch checked={withStreaming || false} label="Enable streaming (v8+)" onChange={this.onWithStreamingChange} />
+        <InlineField label="Enable streaming (v8+)">
+          <InlineSwitch
+              value={withStreaming || false}
+              onChange={this.onWithStreamingChange}
+              css=""
+          />
+        </InlineField>
       </div>
     );
   }
