@@ -29,7 +29,7 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
         let { telemetry } = target;
         const telemetryField = telemetry || 'Speed';
 
-        const channel = `ds/${this.uid}/dirt`
+        const channel = `ds/${this.uid}/${target.source || 'dirtRally2'}`
         const addr = parseLiveChannelAddress(channel);
         if (!isValidLiveChannelAddress(addr)) {
           continue;

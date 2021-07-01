@@ -1,4 +1,4 @@
-package main
+package dirtrally
 
 import (
 	"bytes"
@@ -79,40 +79,21 @@ type TelemetryFrame struct {
 }
 
 func ReadPacket(b []byte) (*TelemetryFrame, error) {
-	//fmt.Printf("%x\n", b)
 	buf := bytes.NewReader(b)
 
-	header := &TelemetryFrame{}
-	err := binary.Read(buf, binary.LittleEndian, header)
+	frame := &TelemetryFrame{}
+	err := binary.Read(buf, binary.LittleEndian, frame)
 	if err != nil {
 		return nil, err
 	}
 
-	return header, nil
-}
-
-func TelemetryFrameToMap(frame TelemetryFrame) map[string]float32 {
-	var frameMap map[string]float32
-	frame = ConvertTelemetryValues(frame)
-	frameJson, err := json.Marshal(&frame)
-	if err != nil {
-		log.DefaultLogger.Error("Error converting frame", "error", err)
-	}
-	json.Unmarshal(frameJson, &frameMap)
-	return frameMap
-}
-
-func ConvertTelemetryValues(f TelemetryFrame) TelemetryFrame {
-	f.Speed = f.Speed * 3.6
-	f.EngineRate = f.EngineRate * 10
-	return f
+	return frame, nil
 }
 
 func TelemetryToDataFrame(tf TelemetryFrame) *data.Frame {
 	frame := data.NewFrame("response")
-	telemetryMap := TelemetryFrameToMap(tf)
+	telemetryMap := telemetryFrameToMap(tf)
 
-	// Add fields (matching the same schema used in QueryData).
 	frame.Fields = append(frame.Fields,
 		data.NewField("time", nil, []time.Time{time.Now()}),
 	)
@@ -124,4 +105,21 @@ func TelemetryToDataFrame(tf TelemetryFrame) *data.Frame {
 	}
 
 	return frame
+}
+
+func telemetryFrameToMap(frame TelemetryFrame) map[string]float32 {
+	var frameMap map[string]float32
+	frame = convertTelemetryValues(frame)
+	frameJson, err := json.Marshal(&frame)
+	if err != nil {
+		log.DefaultLogger.Error("Error converting frame", "error", err)
+	}
+	json.Unmarshal(frameJson, &frameMap)
+	return frameMap
+}
+
+func convertTelemetryValues(f TelemetryFrame) TelemetryFrame {
+	f.Speed = f.Speed * 3.6
+	f.EngineRate = f.EngineRate * 10
+	return f
 }

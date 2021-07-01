@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"github.com/grafana/grafana-starter-datasource-backend/pkg/dirtrally"
 	"math/rand"
 	"time"
 
@@ -141,21 +142,23 @@ func (d *SimracingTelemetryDatasource) CheckHealth(_ context.Context, req *backe
 func (d *SimracingTelemetryDatasource) SubscribeStream(_ context.Context, req *backend.SubscribeStreamRequest) (*backend.SubscribeStreamResponse, error) {
 	log.DefaultLogger.Info("SubscribeStream called", "request", req)
 
-	//status := backend.SubscribeStreamStatusPermissionDenied
-	//if req.Path == "stream" {
-	//	// Allow subscribing only on expected path.
-	//	status = backend.SubscribeStreamStatusOK
-	//}
 	status := backend.SubscribeStreamStatusOK
 	return &backend.SubscribeStreamResponse{
 		Status: status,
 	}, nil
 }
 
-// RunStream is called once for any open channel.  Results are shared with everyone
+// RunStream is called once for any open channel. Results are shared with everyone
 // subscribed to the same channel.
 func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backend.RunStreamRequest, sender *backend.StreamSender) error {
 	log.DefaultLogger.Info("RunStream called", "request", req)
+
+	telemetryChan := make(chan dirtrally.TelemetryFrame)
+	telemetryErrorChan := make(chan error)
+
+	if req.Path == "dirtRally2" {
+		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
+	}
 
 	lastTimeSent := time.Now()
 
@@ -172,7 +175,7 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 				continue
 			}
 
-			frame := TelemetryToDataFrame(telemetryFrame)
+			frame := dirtrally.TelemetryToDataFrame(telemetryFrame)
 			lastTimeSent = time.Now()
 			err := sender.SendFrame(frame, data.IncludeAll)
 			if err != nil {

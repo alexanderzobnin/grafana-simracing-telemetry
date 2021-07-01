@@ -1,4 +1,4 @@
-package main
+package dirtrally
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	serverPort    = "20777"
+	serverPort = "20777"
 )
 
 func RunTelemetryServer(ch chan TelemetryFrame, errCh chan error) {
@@ -34,8 +34,8 @@ func RunTelemetryServer(ch chan TelemetryFrame, errCh chan error) {
 			errCh <- err
 			return
 		}
-		//fmt.Print("-> ", string(buffer[0:n-1]))
 		fmt.Printf("Read %v bytes\n", n)
+
 		packetBuffer := buffer[0:n]
 		p, err := ReadPacket(packetBuffer)
 		if err != nil {
@@ -44,8 +44,5 @@ func RunTelemetryServer(ch chan TelemetryFrame, errCh chan error) {
 		}
 
 		ch <- *p
-
-		fmt.Printf("Packet: %v\n", *p)
-		fmt.Printf("%v %v %v %v", p.EngineRate, p.Brake, p.Clutch, p.Steer)
 	}
 }
