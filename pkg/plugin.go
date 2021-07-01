@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"github.com/grafana/grafana-starter-datasource-backend/pkg/acc"
 	"github.com/grafana/grafana-starter-datasource-backend/pkg/dirtrally"
 	"math/rand"
 	"time"
@@ -158,6 +159,8 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 
 	if req.Path == "dirtRally2" {
 		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
+	} else if req.Path == "acc" {
+		go acc.RunClient(telemetryErrorChan)
 	}
 
 	lastTimeSent := time.Now()

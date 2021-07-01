@@ -9,6 +9,7 @@ import {dirtRallyOptions} from "./dirtRallyOptions";
 
 export const sourceOptions = [
   { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
+  { label: 'Assetto Corsa Competizione', value: 'acc' },
 ];
 
 type Props = QueryEditorProps<DataSource, TelemetryQuery, MyDataSourceOptions>;
