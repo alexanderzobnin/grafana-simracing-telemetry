@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"github.com/grafana/grafana-starter-datasource-backend/pkg/acc"
+	"github.com/grafana/grafana-starter-datasource-backend/pkg/acc/sharedmemory"
 	"github.com/grafana/grafana-starter-datasource-backend/pkg/dirtrally"
 	"math/rand"
 	"time"
@@ -14,6 +14,8 @@ import (
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"github.com/grafana/grafana-plugin-sdk-go/live"
 )
+
+var ACCUpdateInterval = time.Second / 60
 
 // Make sure SimracingTelemetryDatasource implements required interfaces. This is important to do
 // since otherwise we will only get a not implemented error response from plugin in
@@ -157,10 +159,14 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 	telemetryChan := make(chan dirtrally.TelemetryFrame)
 	telemetryErrorChan := make(chan error)
 
+	accMmapTelemetryChan := make(chan sharedmemory.SPageFilePhysics)
+	accCtrlChan := make(chan string)
+
 	if req.Path == "dirtRally2" {
 		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
 	} else if req.Path == "acc" {
-		go acc.RunClient(telemetryErrorChan)
+		//go udpclient.RunClient(telemetryErrorChan)
+		go sharedmemory.RunSharedMemoryClient(accMmapTelemetryChan, accCtrlChan, ACCUpdateInterval)
 	}
 
 	lastTimeSent := time.Now()
@@ -170,6 +176,7 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 		select {
 		case <-ctx.Done():
 			log.DefaultLogger.Info("Context done, finish streaming", "path", req.Path)
+			accCtrlChan <- "stop"
 			return nil
 
 		case telemetryFrame := <-telemetryChan:
@@ -181,6 +188,26 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 			frame := dirtrally.TelemetryToDataFrame(telemetryFrame)
 			lastTimeSent = time.Now()
 			err := sender.SendFrame(frame, data.IncludeAll)
+			if err != nil {
+				log.DefaultLogger.Error("Error sending frame", "error", err)
+				continue
+			}
+
+		case mmapFrame := <-accMmapTelemetryChan:
+			// Add a throttling for smooth animations
+			if time.Now().Before(lastTimeSent.Add(time.Second / 60)) {
+				// Drop frame
+				continue
+			}
+
+			frame, err := sharedmemory.PhysicsToDataFrame(mmapFrame)
+			if err != nil {
+				log.DefaultLogger.Debug("Error converting telemetry frame", "error", err)
+				continue
+			}
+
+			lastTimeSent = time.Now()
+			err = sender.SendFrame(frame, data.IncludeAll)
 			if err != nil {
 				log.DefaultLogger.Error("Error sending frame", "error", err)
 				continue

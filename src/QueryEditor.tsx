@@ -6,6 +6,7 @@ import {QueryEditorProps, SelectableValue} from '@grafana/data';
 import { DataSource } from './datasource';
 import { defaultQuery, MyDataSourceOptions, TelemetryQuery } from './types';
 import {dirtRallyOptions} from "./dirtRallyOptions";
+import {accOptions} from "./accOptions";
 
 export const sourceOptions = [
   { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
@@ -39,6 +40,11 @@ export class QueryEditor extends PureComponent<Props> {
     const query = defaults(this.props.query, defaultQuery);
     const { telemetry, source, withStreaming } = query;
 
+    let options = dirtRallyOptions;
+    if (source === 'acc') {
+      options = accOptions;
+    }
+
     return (
       <div className="gf-form">
         <InlineField label="Source">
@@ -52,7 +58,7 @@ export class QueryEditor extends PureComponent<Props> {
         </InlineField>
         <Select
           width={25}
-          options={dirtRallyOptions}
+          options={options}
           value={telemetry}
           onChange={this.onTelemetryChange}
           defaultValue={'Time'}
