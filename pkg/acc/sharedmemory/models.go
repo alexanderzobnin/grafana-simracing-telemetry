@@ -127,7 +127,7 @@ type SPageFileGraphic struct {
 	TCCut                    int32
 	EngineMap                int32
 	ABSLevel                 int32
-	FuelxLap                 int32
+	FuelxLap                 float32
 	RainLights               int32
 	FlashingLights           int32
 	LightsStage              int32
