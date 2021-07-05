@@ -262,7 +262,7 @@ func GraphicToDataFrame(t SPageFileGraphic, frame *data.Frame) (*data.Frame, err
 		data.NewField("TCCut", nil, []int32{t.TCCut}),
 		data.NewField("EngineMap", nil, []int32{t.EngineMap}),
 		data.NewField("ABSLevel", nil, []int32{t.ABSLevel}),
-		data.NewField("FuelxLap", nil, []int32{t.FuelxLap}),
+		data.NewField("FuelxLap", nil, []float32{t.FuelxLap}),
 		data.NewField("RainLights", nil, []int32{t.RainLights}),
 		data.NewField("FlashingLights", nil, []int32{t.FlashingLights}),
 		data.NewField("LightsStage", nil, []int32{t.LightsStage}),
