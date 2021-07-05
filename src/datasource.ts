@@ -26,8 +26,8 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
       }
 
       if (target.withStreaming === true || true) {
-        // let { telemetry } = target;
-        // const telemetryField = telemetry || 'Speed';
+        let { telemetry } = target;
+        const telemetryField = telemetry || 'Speed';
 
         const channel = `ds/${this.uid}/${target.source || 'dirtRally2'}`
         const addr = parseLiveChannelAddress(channel);
@@ -43,9 +43,9 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
             getGrafanaLiveSrv().getDataStream({
               key: `${request.requestId}.${counter++}`,
               addr: addr!,
-              // filter: {
-              //   fields: ['time', telemetryField],
-              // },
+              filter: {
+                fields: ['time', telemetryField],
+              },
               buffer,
             })
         );
