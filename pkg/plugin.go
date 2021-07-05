@@ -159,14 +159,14 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 	telemetryChan := make(chan dirtrally.TelemetryFrame)
 	telemetryErrorChan := make(chan error)
 
-	accMmapTelemetryChan := make(chan sharedmemory.SPageFilePhysics)
+	accTelemetryChan := make(chan sharedmemory.ACCTelemetry)
 	accCtrlChan := make(chan string)
 
 	if req.Path == "dirtRally2" {
 		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
 	} else if req.Path == "acc" {
 		//go udpclient.RunClient(telemetryErrorChan)
-		go sharedmemory.RunSharedMemoryClient(accMmapTelemetryChan, accCtrlChan, ACCUpdateInterval)
+		go sharedmemory.RunSharedMemoryClient(accTelemetryChan, accCtrlChan, ACCUpdateInterval)
 	}
 
 	lastTimeSent := time.Now()
@@ -193,14 +193,14 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 				continue
 			}
 
-		case mmapFrame := <-accMmapTelemetryChan:
+		case mmapFrame := <-accTelemetryChan:
 			// Add a throttling for smooth animations
 			if time.Now().Before(lastTimeSent.Add(time.Second / 60)) {
 				// Drop frame
 				continue
 			}
 
-			frame, err := sharedmemory.PhysicsToDataFrame(mmapFrame)
+			frame, err := sharedmemory.ACCTelemetryToDataFrame(mmapFrame)
 			if err != nil {
 				log.DefaultLogger.Debug("Error converting telemetry frame", "error", err)
 				continue
