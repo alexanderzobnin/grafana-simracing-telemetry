@@ -157,12 +157,14 @@ type ACCTelemetry struct {
 	SPageFilePhysics
 }
 
-func (f *SPageFilePhysics) convertTelemetryValues() *SPageFilePhysics {
+func (f *ACCTelemetry) convertTelemetryValues() *ACCTelemetry {
 	f.Gear = f.Gear - 1
+	f.EngineMap = f.EngineMap + 1
 	return f
 }
 
 func ACCTelemetryToDataFrame(t ACCTelemetry) (*data.Frame, error) {
+	t.convertTelemetryValues()
 	frame, err := PhysicsToDataFrame(t.SPageFilePhysics)
 	if err != nil {
 		return nil, err
@@ -171,8 +173,6 @@ func ACCTelemetryToDataFrame(t ACCTelemetry) (*data.Frame, error) {
 }
 
 func PhysicsToDataFrame(t SPageFilePhysics) (*data.Frame, error) {
-	t.convertTelemetryValues()
-
 	frame := data.NewFrame("response")
 	frame.Fields = append(frame.Fields,
 		data.NewField("time", nil, []time.Time{time.Now()}),
