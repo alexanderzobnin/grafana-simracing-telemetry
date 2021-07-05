@@ -37,7 +37,8 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
 
         // const maxLength = request.maxDataPoints ?? 500;
         // Reduce buffer size to improve performance on large dashboards
-        const maxLength = request.maxDataPoints ?? 10;
+        const maxLength = 2;
+        console.log('maxDataPoints: ', request.maxDataPoints);
         const buffer: StreamingFrameOptions = {
           maxDelta: request.range.to.valueOf() - request.range.from.valueOf(),
           maxLength,
