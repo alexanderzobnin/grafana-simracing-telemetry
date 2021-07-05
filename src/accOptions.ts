@@ -163,4 +163,6 @@ export const accOptions = [
     { label: 'TrackStatus', value: 'TrackStatus' },
     { label: 'MissingMandatoryPits', value: 'MissingMandatoryPits' },
     { label: 'Clock', value: 'Clock' },
+
+    { label: 'All', value: '*' },
 ];

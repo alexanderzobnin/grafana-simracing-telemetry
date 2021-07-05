@@ -34,18 +34,28 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
         if (!isValidLiveChannelAddress(addr)) {
           continue;
         }
+
+        // const maxLength = request.maxDataPoints ?? 500;
+        // Reduce buffer size to improve performance on large dashboards
+        const maxLength = request.maxDataPoints ?? 10;
         const buffer: StreamingFrameOptions = {
-          maxLength: request.maxDataPoints ?? 500,
           maxDelta: request.range.to.valueOf() - request.range.from.valueOf(),
+          maxLength,
         };
+
+        let filter: any = {
+          fields: ['time', telemetryField],
+        };
+        if (telemetry === '*') {
+          // for debugging purposes
+          filter = null;
+        }
 
         queries.push(
             getGrafanaLiveSrv().getDataStream({
               key: `${request.requestId}.${counter++}`,
               addr: addr!,
-              filter: {
-                fields: ['time', telemetryField],
-              },
+              filter,
               buffer,
             })
         );
