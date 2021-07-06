@@ -60,7 +60,7 @@ export class QueryEditor extends PureComponent<Props> {
               options={sourceOptions}
               value={source}
               onChange={this.onSourceChange}
-              defaultValue={'dirtRally2'}
+              defaultValue={'acc'}
           />
         </InlineField>
         <Select

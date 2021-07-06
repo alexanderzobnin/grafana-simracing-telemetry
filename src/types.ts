@@ -8,8 +8,8 @@ export interface TelemetryQuery extends DataQuery {
 }
 
 export const defaultQuery: Partial<TelemetryQuery> = {
-  telemetry: 'Speed',
-  source: 'dirtRally2',
+  telemetry: 'SpeedKmh',
+  source: 'acc',
   withStreaming: true,
   graph: false,
 };
