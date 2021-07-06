@@ -163,6 +163,13 @@ export const accOptions = [
     { label: 'TrackStatus', value: 'TrackStatus' },
     { label: 'MissingMandatoryPits', value: 'MissingMandatoryPits' },
     { label: 'Clock', value: 'Clock' },
+    { label: 'DirectionLightsLeft', value: 'DirectionLightsLeft' },
+    { label: 'DirectionLightsRight', value: 'DirectionLightsRight' },
+    { label: 'MfdTyreSet', value: 'MfdTyreSet' },
+    { label: 'TrackGripStatus', value: 'TrackGripStatus' },
+    { label: 'RainIntensity', value: 'RainIntensity' },
+    { label: 'RainIntensityIn10min', value: 'RainIntensityIn10min' },
+    { label: 'RainIntensityIn30min', value: 'RainIntensityIn30min' },
 
     { label: 'All', value: '*' },
 ];

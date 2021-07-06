@@ -150,6 +150,28 @@ type SPageFileGraphic struct {
 	TrackStatus          [68]byte
 	MissingMandatoryPits int32
 	Clock                float32
+	DirectionLightsLeft  int32
+	DirectionLightsRight int32
+	GlobalYellow         int32
+	GlobalYellow1        int32
+	GlobalYellow2        int32
+	GlobalYellow3        int32
+	GlobalWhite          int32
+	GlobalGreen          int32
+	GlobalChequered      int32
+	GlobalRed            int32
+	MfdTyreSet           int32
+	MfdFuelToAdd         float32
+	MfdTyrePressureFL    float32
+	MfdTyrePressureFR    float32
+	MfdTyrePressureRL    float32
+	MfdTyrePressureRR    float32
+	TrackGripStatus      int32
+	RainIntensity        int32
+	RainIntensityIn10min int32
+	RainIntensityIn30min int32
+	CurrentTyreSet       int32
+	StrategyTyreSet      int32
 }
 
 type ACCTelemetry struct {
@@ -285,6 +307,13 @@ func GraphicToDataFrame(t SPageFileGraphic, frame *data.Frame) (*data.Frame, err
 		data.NewField("TrackStatus", nil, []string{wchart68ToString(t.TrackStatus)}),
 		data.NewField("MissingMandatoryPits", nil, []int32{t.MissingMandatoryPits}),
 		data.NewField("Clock", nil, []float32{t.Clock}),
+		data.NewField("DirectionLightsLeft", nil, []int32{t.DirectionLightsLeft}),
+		data.NewField("DirectionLightsRight", nil, []int32{t.DirectionLightsRight}),
+		data.NewField("MfdTyreSet", nil, []int32{t.MfdTyreSet}),
+		data.NewField("TrackGripStatus", nil, []int32{t.TrackGripStatus}),
+		data.NewField("RainIntensity", nil, []int32{t.RainIntensity}),
+		data.NewField("RainIntensityIn10min", nil, []int32{t.RainIntensityIn10min}),
+		data.NewField("RainIntensityIn30min", nil, []int32{t.RainIntensityIn30min}),
 	)
 
 	return frame, nil
