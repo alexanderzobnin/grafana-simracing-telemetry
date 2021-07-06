@@ -1,4 +1,5 @@
 export const accOptions = [
+    { label: 'Gas', value: 'Gas' },
     { label: 'Brake', value: 'Brake' },
     { label: 'Fuel', value: 'Fuel' },
     { label: 'Gear', value: 'Gear' },
