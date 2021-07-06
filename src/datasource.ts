@@ -26,7 +26,7 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
       }
 
       if (target.withStreaming === true || true) {
-        let { telemetry } = target;
+        let { telemetry, graph } = target;
         const telemetryField = telemetry || 'Speed';
 
         const channel = `ds/${this.uid}/${target.source || 'dirtRally2'}`
@@ -37,8 +37,7 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
 
         // const maxLength = request.maxDataPoints ?? 500;
         // Reduce buffer size to improve performance on large dashboards
-        const maxLength = 2;
-        console.log('maxDataPoints: ', request.maxDataPoints);
+        const maxLength = graph ? request.maxDataPoints ?? 500 : 2;
         const buffer: StreamingFrameOptions = {
           maxDelta: request.range.to.valueOf() - request.range.from.valueOf(),
           maxLength,

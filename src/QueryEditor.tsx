@@ -36,9 +36,16 @@ export class QueryEditor extends PureComponent<Props> {
     onRunQuery();
   };
 
+  onGraphChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    const { onChange, query, onRunQuery } = this.props;
+    onChange({ ...query, graph: event.currentTarget.checked });
+    // executes the query
+    onRunQuery();
+  };
+
   render() {
     const query = defaults(this.props.query, defaultQuery);
-    const { telemetry, source, withStreaming } = query;
+    const { telemetry, source, withStreaming, graph } = query;
 
     let options = dirtRallyOptions;
     if (source === 'acc') {
@@ -63,10 +70,17 @@ export class QueryEditor extends PureComponent<Props> {
           onChange={this.onTelemetryChange}
           defaultValue={'Time'}
         />
-        <InlineField label="Enable streaming (v8+)">
+        <InlineField label="Enable streaming">
           <InlineSwitch
               value={withStreaming || false}
               onChange={this.onWithStreamingChange}
+              css=""
+          />
+        </InlineField>
+        <InlineField label="Graph">
+          <InlineSwitch
+              value={graph}
+              onChange={this.onGraphChange}
               css=""
           />
         </InlineField>
