@@ -34,6 +34,28 @@
     "version": "%VERSION%",
     "updated": "%TODAY%"
   },
+  "includes": [
+    {
+      "type": "dashboard",
+      "name": "ACC Basic",
+      "path": "dashboards/ACC/ACC_Basic.json"
+    },
+    {
+      "type": "dashboard",
+      "name": "ACC Advanced",
+      "path": "dashboards/ACC/ACC_Advanced.json"
+    },
+    {
+      "type": "dashboard",
+      "name": "ACC Race Stats",
+      "path": "dashboards/ACC/ACC_Race_Stats.json"
+    },
+    {
+      "type": "dashboard",
+      "name": "ACC Suspension",
+      "path": "dashboards/ACC/ACC_Suspension.json"
+    }
+  ],
   "dependencies": {
     "grafanaDependency": ">=7.0.0",
     "plugins": []
