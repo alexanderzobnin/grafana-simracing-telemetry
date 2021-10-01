@@ -1,9 +1,11 @@
 package sharedmemory
 
 const (
-	INVALID_HANDLE_VALUE  uintptr = 0x80000000
-	IRacingMemMapFileName         = "Local\\IRSDKMemMapFileName"
-	IRacingMemMapFileSize         = 1164 * 1024
+	INVALID_HANDLE_VALUE     uintptr = 0x80000000
+	IRSDK_DATAVALIDEVENTNAME         = "Local\\IRSDKDataValidEvent"
+
+	IRacingMemMapFileName = "Local\\IRSDKMemMapFileName"
+	IRacingMemMapFileSize = 1164 * 1024
 
 	IRSDK_MAX_STRING = 32
 	IRSDK_MAX_DESC   = 64
