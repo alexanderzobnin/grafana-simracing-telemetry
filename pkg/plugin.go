@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"github.com/grafana/grafana-starter-datasource-backend/pkg/acc/sharedmemory"
+	acc "github.com/grafana/grafana-starter-datasource-backend/pkg/acc/sharedmemory"
 	"github.com/grafana/grafana-starter-datasource-backend/pkg/dirtrally"
+	iracing "github.com/grafana/grafana-starter-datasource-backend/pkg/iracing/sharedmemory"
 	"math/rand"
 	"time"
 
@@ -15,7 +16,7 @@ import (
 	"github.com/grafana/grafana-plugin-sdk-go/live"
 )
 
-var ACCUpdateInterval = time.Second / 60
+var SharedMemoryUpdateInterval = time.Second / 60
 
 // Make sure SimracingTelemetryDatasource implements required interfaces. This is important to do
 // since otherwise we will only get a not implemented error response from plugin in
@@ -159,14 +160,19 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 	telemetryChan := make(chan dirtrally.TelemetryFrame)
 	telemetryErrorChan := make(chan error)
 
-	accTelemetryChan := make(chan sharedmemory.ACCTelemetry)
+	accTelemetryChan := make(chan acc.ACCTelemetry)
 	accCtrlChan := make(chan string)
+
+	iracingTelemetryChan := make(chan iracing.IRacingTelemetry)
+	iracingCtrlChan := make(chan string)
 
 	if req.Path == "dirtRally2" {
 		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
 	} else if req.Path == "acc" {
 		//go udpclient.RunClient(telemetryErrorChan)
-		go sharedmemory.RunSharedMemoryClient(accTelemetryChan, accCtrlChan, ACCUpdateInterval)
+		go acc.RunSharedMemoryClient(accTelemetryChan, accCtrlChan, SharedMemoryUpdateInterval)
+	} else if req.Path == "iRacing" {
+		go iracing.RunSharedMemoryClient(iracingTelemetryChan, iracingCtrlChan, SharedMemoryUpdateInterval)
 	}
 
 	lastTimeSent := time.Now()
@@ -200,7 +206,7 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 				continue
 			}
 
-			frame, err := sharedmemory.ACCTelemetryToDataFrame(mmapFrame)
+			frame, err := acc.ACCTelemetryToDataFrame(mmapFrame)
 			if err != nil {
 				log.DefaultLogger.Debug("Error converting telemetry frame", "error", err)
 				continue
