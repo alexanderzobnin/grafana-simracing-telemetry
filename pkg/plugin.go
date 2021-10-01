@@ -182,7 +182,11 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 		select {
 		case <-ctx.Done():
 			log.DefaultLogger.Info("Context done, finish streaming", "path", req.Path)
-			accCtrlChan <- "stop"
+			if req.Path == "acc" {
+				accCtrlChan <- "stop"
+			} else if req.Path == "iRacing" {
+				iracingCtrlChan <- "stop"
+			}
 			return nil
 
 		case telemetryFrame := <-telemetryChan:
