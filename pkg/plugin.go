@@ -163,7 +163,7 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 	accTelemetryChan := make(chan acc.ACCTelemetry)
 	accCtrlChan := make(chan string)
 
-	iracingTelemetryChan := make(chan iracing.IRacingTelemetry)
+	iracingTelemetryChan := make(chan iracing.IRacingTelemetryMap)
 	iracingCtrlChan := make(chan string)
 
 	if req.Path == "dirtRally2" {
@@ -211,6 +211,26 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 			}
 
 			frame, err := acc.ACCTelemetryToDataFrame(mmapFrame)
+			if err != nil {
+				log.DefaultLogger.Debug("Error converting telemetry frame", "error", err)
+				continue
+			}
+
+			lastTimeSent = time.Now()
+			err = sender.SendFrame(frame, data.IncludeAll)
+			if err != nil {
+				log.DefaultLogger.Error("Error sending frame", "error", err)
+				continue
+			}
+
+		case telemetryFrame := <-iracingTelemetryChan:
+			// Add a throttling for smooth animations
+			if time.Now().Before(lastTimeSent.Add(time.Second / 60)) {
+				// Drop frame
+				continue
+			}
+
+			frame, err := iracing.TelemetryToDataFrame(telemetryFrame)
 			if err != nil {
 				log.DefaultLogger.Debug("Error converting telemetry frame", "error", err)
 				continue

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/alexeymaximov/go-bio/mmap"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/log"
+	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"golang.org/x/sys/windows"
 	"strings"
 	"syscall"
@@ -17,7 +18,7 @@ var lastTickCount int32 = IntMax
 
 var varHeadersMap map[string]IRSDKVarHeaderDTO = map[string]IRSDKVarHeaderDTO{}
 
-func RunSharedMemoryClient(ch chan IRacingTelemetry, ctrl chan string, interval time.Duration) {
+func RunSharedMemoryClient(ch chan IRacingTelemetryMap, ctrl chan string, interval time.Duration) {
 	mapping, err := openMapping()
 	if err != nil {
 		log.DefaultLogger.Error("Error opening file mapping", "error", err)
@@ -33,9 +34,7 @@ func RunSharedMemoryClient(ch chan IRacingTelemetry, ctrl chan string, interval 
 	for {
 		select {
 		case <-tick:
-			//data, err := readTelemetry(mapping)
 			header, err := readHeader(mapping)
-			//log.DefaultLogger.Debug("Header", "header", header)
 			if err != nil {
 				log.DefaultLogger.Warn("Error reading file mapping", "error", err)
 				continue
@@ -47,37 +46,9 @@ func RunSharedMemoryClient(ch chan IRacingTelemetry, ctrl chan string, interval 
 			}
 
 			if data != nil {
-				//log.DefaultLogger.Debug("Data", "data", fmt.Sprintf("%x", data[:32]))
-				valueOffset := varHeadersMap["Throttle"].Offset
-				valueByte := data[valueOffset : valueOffset+4]
-				var valueFloat float32
-				buf := bytes.NewReader(valueByte)
-				err = binary.Read(buf, binary.LittleEndian, &valueFloat)
-				fmt.Printf("Throttle: %v\r", valueFloat)
+				telemetry := convertToTelemetryMap(data)
+				ch <- telemetry
 			}
-
-			//for _, varDTO := range varHeadersArray {
-			//	varType := "float32"
-			//	switch varDTO.Type {
-			//	case 0:
-			//		varType = "[1]byte"
-			//	case 1:
-			//		varType = "bool"
-			//	case 2:
-			//		varType = "int32"
-			//	case 3:
-			//		varType = "[4]byte"
-			//	case 4:
-			//		varType = "float32"
-			//	case 5:
-			//		varType = "float64"
-			//	}
-			//
-			//	fmt.Printf("%s %s\n", varDTO.Name, varType)
-			//}
-			//return
-
-			//ch <- *data
 
 		case ctrlMessage := <-ctrl:
 			if ctrlMessage == "stop" {
@@ -239,4 +210,167 @@ func closeMapping(mapping *mmap.Mapping) {
 	if err != nil {
 		log.DefaultLogger.Warn("Error closing file mapping", "error", err)
 	}
+}
+
+func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
+	telementryMap := make(IRacingTelemetryMap)
+	for name, varHeader := range varHeadersMap {
+		switch varHeader.Type {
+		case 0:
+			// char
+			// TODO: implement this
+			break
+		case 1:
+			// bool
+			var value bool
+			valueByte := data[varHeader.Offset : varHeader.Offset+varHeader.Length]
+			buf := bytes.NewReader(valueByte)
+			err := binary.Read(buf, binary.LittleEndian, &value)
+			if err != nil {
+				log.DefaultLogger.Warn("Error converting value", "error", err)
+				break
+			}
+			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "bool", Value: value}
+		case 2:
+			// int
+			var value int32
+			valueByte := data[varHeader.Offset : varHeader.Offset+varHeader.Length]
+			buf := bytes.NewReader(valueByte)
+			err := binary.Read(buf, binary.LittleEndian, &value)
+			if err != nil {
+				log.DefaultLogger.Warn("Error converting value", "error", err)
+				break
+			}
+			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "int32", Value: value}
+		case 3:
+			// bit field
+			// TODO: implement this
+			break
+		case 4:
+			// float32
+			var value float32
+			valueByte := data[varHeader.Offset : varHeader.Offset+varHeader.Length]
+			buf := bytes.NewReader(valueByte)
+			err := binary.Read(buf, binary.LittleEndian, &value)
+			if err != nil {
+				log.DefaultLogger.Warn("Error converting value", "error", err)
+				break
+			}
+			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float32", Value: value}
+		case 5:
+			// float64 (double)
+			var value float64
+			valueByte := data[varHeader.Offset : varHeader.Offset+varHeader.Length]
+			buf := bytes.NewReader(valueByte)
+			err := binary.Read(buf, binary.LittleEndian, &value)
+			if err != nil {
+				log.DefaultLogger.Warn("Error converting value", "error", err)
+				break
+			}
+			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float64", Value: value}
+		}
+	}
+
+	return telementryMap
+}
+
+func TelemetryToDataFrame(tm IRacingTelemetryMap) (*data.Frame, error) {
+	frame := data.NewFrame("response")
+	frame.Fields = append(frame.Fields,
+		data.NewField("time", nil, []time.Time{time.Now()}),
+	)
+
+	for _, value := range tm {
+		field, err := value.TelemetryValueToField()
+		if err != nil {
+			log.DefaultLogger.Debug("Error converting value", "error", err)
+		} else {
+			frame.Fields = append(frame.Fields, field)
+		}
+	}
+
+	return frame, nil
+}
+
+func (telemetryValue IRacingTelemetryValue) TelemetryValueToField() (*data.Field, error) {
+	switch telemetryValue.Type {
+	case "float32":
+		value, ok := telemetryValue.Value.(float32)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("error converting value to %s", telemetryValue.Type))
+		}
+		return data.NewField(telemetryValue.Name, nil, []float32{value}), nil
+	case "float64":
+		value, ok := telemetryValue.Value.(float64)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("error converting value to %s", telemetryValue.Type))
+		}
+		return data.NewField(telemetryValue.Name, nil, []float64{value}), nil
+	case "int32":
+		value, ok := telemetryValue.Value.(int32)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("error converting value to %s", telemetryValue.Type))
+		}
+		return data.NewField(telemetryValue.Name, nil, []int32{value}), nil
+	default:
+		return nil, errors.New(fmt.Sprintf("not implemented type %s", telemetryValue.Type))
+	}
+}
+
+func readValueAsDataField(dataByte []byte, name string) (*data.Field, error) {
+	varHeader, ok := varHeadersMap[name]
+	if !ok {
+		return nil, errors.New("field not found")
+	}
+
+	switch varHeader.Type {
+	case 0:
+		// char
+		return nil, errors.New("not implemented")
+	case 1:
+		// bool
+		var value bool
+		valueByte := dataByte[varHeader.Offset : varHeader.Offset+varHeader.Length]
+		buf := bytes.NewReader(valueByte)
+		err := binary.Read(buf, binary.LittleEndian, &value)
+		if err != nil {
+			return nil, err
+		}
+		return data.NewField(name, nil, []bool{value}), nil
+	case 2:
+		// int
+		var value int32
+		valueByte := dataByte[varHeader.Offset : varHeader.Offset+varHeader.Length]
+		buf := bytes.NewReader(valueByte)
+		err := binary.Read(buf, binary.LittleEndian, &value)
+		if err != nil {
+			return nil, err
+		}
+		return data.NewField(name, nil, []int32{value}), nil
+	case 3:
+		// bit field
+		return nil, errors.New("not implemented")
+	case 4:
+		// float32
+		var value float32
+		valueByte := dataByte[varHeader.Offset : varHeader.Offset+varHeader.Length]
+		buf := bytes.NewReader(valueByte)
+		err := binary.Read(buf, binary.LittleEndian, &value)
+		if err != nil {
+			return nil, err
+		}
+		return data.NewField(name, nil, []float32{value}), nil
+	case 5:
+		// float64 (double)
+		var value float64
+		valueByte := dataByte[varHeader.Offset : varHeader.Offset+varHeader.Length]
+		buf := bytes.NewReader(valueByte)
+		err := binary.Read(buf, binary.LittleEndian, &value)
+		if err != nil {
+			return nil, err
+		}
+		return data.NewField(name, nil, []float64{value}), nil
+	}
+
+	return nil, errors.New("field has unknown type")
 }

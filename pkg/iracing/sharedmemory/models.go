@@ -16,6 +16,8 @@ const (
 	IntMax = 2147483647
 )
 
+var IRSDKVarTypeBytes = [6]int32{1, 1, 4, 4, 4, 8}
+
 type IRSDKVarHeader struct {
 	Type   int32 // irsdk_VarType
 	Offset int32 // offset fron start of buffer row
@@ -33,6 +35,7 @@ type IRSDKVarHeaderDTO struct {
 	Type   int32 // irsdk_VarType
 	Offset int32 // offset fron start of buffer row
 	Count  int32 // number of entrys (array) so length in bytes would be irsdk_VarTypeBytes[type] * count
+	Length int32
 
 	CountAsTime bool
 
@@ -46,6 +49,7 @@ func (vh IRSDKVarHeader) toIRSDKVarHeaderDTO() IRSDKVarHeaderDTO {
 		Type:        vh.Type,
 		Offset:      vh.Offset,
 		Count:       vh.Count,
+		Length:      IRSDKVarTypeBytes[vh.Type] * vh.Count,
 		CountAsTime: vh.CountAsTime,
 		Name:        strings.Trim(string(vh.Name[:]), "\u0000"),
 		Desc:        strings.Trim(string(vh.Desc[:]), "\u0000"),
@@ -81,6 +85,14 @@ type IRSDKVarBuf struct {
 	BufOffset int32    // offset from header
 	Pad       [2]int32 // (16 byte align)
 }
+
+type IRacingTelemetryValue struct {
+	Name  string
+	Type  string
+	Value interface{}
+}
+
+type IRacingTelemetryMap = map[string]IRacingTelemetryValue
 
 type IRacingTelemetry struct {
 	SessionTime                     float64
