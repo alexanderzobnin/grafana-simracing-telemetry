@@ -15,7 +15,7 @@ import (
 
 var lastTickCount int32 = IntMax
 
-var varHeadersMap map[string]*IRSDKVarHeader = map[string]*IRSDKVarHeader{}
+var varHeadersMap map[string]IRSDKVarHeaderDTO = map[string]IRSDKVarHeaderDTO{}
 
 func RunSharedMemoryClient(ch chan IRacingTelemetry, ctrl chan string, interval time.Duration) {
 	mapping, err := openMapping()
@@ -35,18 +35,47 @@ func RunSharedMemoryClient(ch chan IRacingTelemetry, ctrl chan string, interval 
 		case <-tick:
 			//data, err := readTelemetry(mapping)
 			header, err := readHeader(mapping)
-			log.DefaultLogger.Debug("Header", "header", header)
+			//log.DefaultLogger.Debug("Header", "header", header)
 			if err != nil {
 				log.DefaultLogger.Warn("Error reading file mapping", "error", err)
 				continue
 			}
 			data, err := readData(mapping, header, hDataEvent)
-			log.DefaultLogger.Debug("Data", "data", fmt.Sprintf("%x", data[:32]))
-			//log.DefaultLogger.Debug("Variables", "vars", varHeadersMap)
 			if err != nil {
 				log.DefaultLogger.Warn("Error reading file mapping", "error", err)
 				continue
 			}
+
+			if data != nil {
+				//log.DefaultLogger.Debug("Data", "data", fmt.Sprintf("%x", data[:32]))
+				valueOffset := varHeadersMap["Throttle"].Offset
+				valueByte := data[valueOffset : valueOffset+4]
+				var valueFloat float32
+				buf := bytes.NewReader(valueByte)
+				err = binary.Read(buf, binary.LittleEndian, &valueFloat)
+				fmt.Printf("Throttle: %v\r", valueFloat)
+			}
+
+			//for _, varDTO := range varHeadersArray {
+			//	varType := "float32"
+			//	switch varDTO.Type {
+			//	case 0:
+			//		varType = "[1]byte"
+			//	case 1:
+			//		varType = "bool"
+			//	case 2:
+			//		varType = "int32"
+			//	case 3:
+			//		varType = "[4]byte"
+			//	case 4:
+			//		varType = "float32"
+			//	case 5:
+			//		varType = "float64"
+			//	}
+			//
+			//	fmt.Printf("%s %s\n", varDTO.Name, varType)
+			//}
+			//return
 
 			//ch <- *data
 
@@ -92,9 +121,9 @@ func waitForValidData(hDataValidEvent syscall.Handle) bool {
 
 func readHeader(mapping *mmap.Mapping) (*IRSDKHeader, error) {
 	header := IRSDKHeader{}
-	fileSize := binary.Size(header)
+	headerSize := binary.Size(header)
 
-	b := make([]byte, fileSize)
+	b := make([]byte, headerSize)
 	_, err := mapping.ReadAt(b, 0)
 	if err != nil {
 		return nil, err
@@ -111,7 +140,6 @@ func readHeader(mapping *mmap.Mapping) (*IRSDKHeader, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.DefaultLogger.Debug("Data", "data", fmt.Sprintf("%s", b[:256]))
 
 	// Read variables headers
 	varHeaderSize := binary.Size(IRSDKVarHeader{})
@@ -128,9 +156,11 @@ func readHeader(mapping *mmap.Mapping) (*IRSDKHeader, error) {
 		if err != nil {
 			return nil, err
 		}
+
 		varName := strings.Trim(string(varHeader.Name[:]), "\u0000")
-		if varName != "" {
-			varHeadersMap[varName] = &varHeader
+		if _, ok := varHeadersMap[varName]; varName != "" && !ok {
+			varHeaderDTO := varHeader.toIRSDKVarHeaderDTO()
+			varHeadersMap[varName] = varHeaderDTO
 		}
 	}
 
@@ -138,7 +168,10 @@ func readHeader(mapping *mmap.Mapping) (*IRSDKHeader, error) {
 }
 
 func readData(mapping *mmap.Mapping, header *IRSDKHeader, hDataValidEvent syscall.Handle) ([]byte, error) {
-	waitForValidData(hDataValidEvent)
+	isValidData := waitForValidData(hDataValidEvent)
+	if !isValidData {
+		return nil, nil
+	}
 
 	if header.Status == 0 {
 		lastTickCount = IntMax
@@ -153,15 +186,15 @@ func readData(mapping *mmap.Mapping, header *IRSDKHeader, hDataValidEvent syscal
 	}
 
 	// if newer than last recieved, than report new data
-	if lastTickCount < header.VarBuf[latest].TickCount || true {
-		log.DefaultLogger.Debug("Trying to read data")
+	if lastTickCount < header.VarBuf[latest].TickCount {
+		//log.DefaultLogger.Debug("Trying to read data")
 		// try twice to get the data out
 		for i := 0; i < 2; i++ {
 			curTickCount := header.VarBuf[latest].TickCount
 			dataLen := header.BufLen
-			dataOffset := header.VarBuf[0].BufOffset
+			dataOffset := header.VarBuf[latest].BufOffset
 			b := make([]byte, dataLen)
-			log.DefaultLogger.Debug("Trying to read data", "offset", dataOffset, "len", dataLen)
+			//log.DefaultLogger.Debug("Trying to read data", "offset", dataOffset, "len", dataLen)
 
 			_, err := mapping.ReadAt(b, int64(dataOffset))
 			if err != nil {
