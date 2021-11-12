@@ -158,14 +158,12 @@ func readData(mapping *mmap.Mapping, header *IRSDKHeader, hDataValidEvent syscal
 
 	// if newer than last recieved, than report new data
 	if lastTickCount < header.VarBuf[latest].TickCount {
-		//log.DefaultLogger.Debug("Trying to read data")
 		// try twice to get the data out
 		for i := 0; i < 2; i++ {
 			curTickCount := header.VarBuf[latest].TickCount
 			dataLen := header.BufLen
 			dataOffset := header.VarBuf[latest].BufOffset
 			b := make([]byte, dataLen)
-			//log.DefaultLogger.Debug("Trying to read data", "offset", dataOffset, "len", dataLen)
 
 			_, err := mapping.ReadAt(b, int64(dataOffset))
 			if err != nil {
@@ -183,26 +181,6 @@ func readData(mapping *mmap.Mapping, header *IRSDKHeader, hDataValidEvent syscal
 	}
 
 	return nil, nil
-}
-
-func readTelemetry(mapping *mmap.Mapping) (*IRacingTelemetry, error) {
-	data := IRacingTelemetry{}
-	//fileSize := binary.Size(data)
-	fileSize := IRacingMemMapFileSize
-
-	b := make([]byte, fileSize)
-	_, err := mapping.ReadAt(b, 0)
-	if err != nil {
-		return nil, err
-	}
-
-	buf := bytes.NewReader(b)
-	err = binary.Read(buf, binary.LittleEndian, &data)
-	if err != nil {
-		return nil, err
-	}
-
-	return &data, nil
 }
 
 func closeMapping(mapping *mmap.Mapping) {
