@@ -407,4 +407,12 @@ export const iRacingOptions = [
     { label: 'RRwearL', value: 'RRwearL' },
     { label: 'RRwearM', value: 'RRwearM' },
     { label: 'RRwearR', value: 'RRwearR' },
+
+    // Flags
+    { label: 'WaterTempWarning', value: 'WaterTempWarning' },
+    { label: 'FuelPressureWarning', value: 'FuelPressureWarning' },
+    { label: 'OilPressureWarning', value: 'OilPressureWarning' },
+    { label: 'EngineStalled', value: 'EngineStalled' },
+    { label: 'PitSpeedLimiter', value: 'PitSpeedLimiter' },
+    { label: 'RevLimiterActive', value: 'RevLimiterActive' },
 ];
