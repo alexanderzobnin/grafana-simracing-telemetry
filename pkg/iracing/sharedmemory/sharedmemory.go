@@ -248,7 +248,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 
 			if name == "Speed" {
 				speedKmph := value * 3.6
-				telementryMap["SpeedKmh"] = IRacingTelemetryValue{Name: name, Type: "float32", Value: speedKmph}
+				telementryMap["SpeedKmh"] = IRacingTelemetryValue{Name: "SpeedKmh", Type: "float32", Value: speedKmph}
 			}
 			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float32", Value: value}
 		case 5:
