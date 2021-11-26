@@ -54,10 +54,15 @@
       "type": "dashboard",
       "name": "ACC Suspension",
       "path": "dashboards/ACC/ACC_Suspension.json"
+    },
+    {
+      "type": "dashboard",
+      "name": "iRacing Basic",
+      "path": "dashboards/iRacing/iRacing_Basic.json"
     }
   ],
   "dependencies": {
-    "grafanaDependency": ">=7.0.0",
+    "grafanaDependency": ">=8.0.0",
     "plugins": []
   }
 }
