@@ -357,7 +357,11 @@ func (telemetryValue IRacingTelemetryValue) TelemetryValueToField() (*data.Field
 		if !ok {
 			return nil, errors.New(fmt.Sprintf("error converting value to %s", telemetryValue.Type))
 		}
-		return data.NewField(telemetryValue.Name, nil, []bool{value}), nil
+		valueInt := 0
+		if value {
+			valueInt = 1
+		}
+		return data.NewField(telemetryValue.Name, nil, []int32{int32(valueInt)}), nil
 	default:
 		return nil, errors.New(fmt.Sprintf("not implemented type %s", telemetryValue.Type))
 	}
