@@ -205,7 +205,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 			buf := bytes.NewReader(valueByte)
 			err := binary.Read(buf, binary.LittleEndian, &value)
 			if err != nil {
-				log.DefaultLogger.Warn("Error converting value", "error", err)
+				log.DefaultLogger.Warn("Error converting bool value", "error", err)
 				break
 			}
 			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "bool", Value: value}
@@ -216,7 +216,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 			buf := bytes.NewReader(valueByte)
 			err := binary.Read(buf, binary.LittleEndian, &value)
 			if err != nil {
-				log.DefaultLogger.Warn("Error converting value", "error", err)
+				log.DefaultLogger.Warn("Error converting int value", "error", err)
 				break
 			}
 			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "int32", Value: value}
@@ -227,11 +227,11 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 			buf := bytes.NewReader(valueByte)
 			err := binary.Read(buf, binary.LittleEndian, &value)
 			if err != nil {
-				log.DefaultLogger.Warn("Error converting value", "error", err)
+				log.DefaultLogger.Warn("Error converting byte value", "error", err)
 				break
 			}
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "int32", Value: value}
-			flagValue := binary.BigEndian.Uint32(value[:])
+			flagValue := binary.LittleEndian.Uint32(value[:])
+			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "uint32", Value: flagValue}
 			if name == "EngineWarnings" {
 				readEngineWarnings(telementryMap, flagValue)
 			}
@@ -242,8 +242,13 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 			buf := bytes.NewReader(valueByte)
 			err := binary.Read(buf, binary.LittleEndian, &value)
 			if err != nil {
-				log.DefaultLogger.Warn("Error converting value", "error", err)
+				log.DefaultLogger.Warn("Error converting float value", "error", err)
 				break
+			}
+
+			if name == "Speed" {
+				speedKmph := value * 3.6
+				telementryMap["SpeedKmh"] = IRacingTelemetryValue{Name: name, Type: "float32", Value: speedKmph}
 			}
 			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float32", Value: value}
 		case 5:
@@ -253,7 +258,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 			buf := bytes.NewReader(valueByte)
 			err := binary.Read(buf, binary.LittleEndian, &value)
 			if err != nil {
-				log.DefaultLogger.Warn("Error converting value", "error", err)
+				log.DefaultLogger.Warn("Error converting double value", "error", err)
 				break
 			}
 			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float64", Value: value}
@@ -264,25 +269,33 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 }
 
 func readEngineWarnings(telementryMap IRacingTelemetryMap, value uint32) {
-	telementryMap["WaterTempWarning"] = IRacingTelemetryValue{Name: "WaterTempWarning", Type: "bool", Value: false}
-	telementryMap["FuelPressureWarning"] = IRacingTelemetryValue{Name: "FuelPressureWarning", Type: "bool", Value: false}
-	telementryMap["OilPressureWarning"] = IRacingTelemetryValue{Name: "OilPressureWarning", Type: "bool", Value: false}
-	telementryMap["EngineStalled"] = IRacingTelemetryValue{Name: "EngineStalled", Type: "bool", Value: false}
-	telementryMap["PitSpeedLimiter"] = IRacingTelemetryValue{Name: "PitSpeedLimiter", Type: "bool", Value: false}
-	telementryMap["RevLimiterActive"] = IRacingTelemetryValue{Name: "RevLimiterActive", Type: "bool", Value: false}
-	switch value {
-	case 1:
-		telementryMap["WaterTempWarning"] = IRacingTelemetryValue{Name: "WaterTempWarning", Type: "bool", Value: true}
-	case 2:
-		telementryMap["FuelPressureWarning"] = IRacingTelemetryValue{Name: "FuelPressureWarning", Type: "bool", Value: true}
-	case 4:
-		telementryMap["OilPressureWarning"] = IRacingTelemetryValue{Name: "OilPressureWarning", Type: "bool", Value: true}
-	case 8:
-		telementryMap["EngineStalled"] = IRacingTelemetryValue{Name: "EngineStalled", Type: "bool", Value: true}
-	case 16:
-		telementryMap["PitSpeedLimiter"] = IRacingTelemetryValue{Name: "PitSpeedLimiter", Type: "bool", Value: true}
-	case 32:
-		telementryMap["RevLimiterActive"] = IRacingTelemetryValue{Name: "RevLimiterActive", Type: "bool", Value: true}
+	telementryMap["WaterTempWarning"] = IRacingTelemetryValue{Name: "WaterTempWarning", Type: "int", Value: 0}
+	telementryMap["FuelPressureWarning"] = IRacingTelemetryValue{Name: "FuelPressureWarning", Type: "int", Value: 0}
+	telementryMap["OilPressureWarning"] = IRacingTelemetryValue{Name: "OilPressureWarning", Type: "int", Value: 0}
+	telementryMap["EngineStalled"] = IRacingTelemetryValue{Name: "EngineStalled", Type: "int", Value: 0}
+	telementryMap["PitSpeedLimiter"] = IRacingTelemetryValue{Name: "PitSpeedLimiter", Type: "int", Value: 0}
+	telementryMap["RevLimiterActive"] = IRacingTelemetryValue{Name: "RevLimiterActive", Type: "int", Value: 0}
+	telementryMap["OilTempWarning"] = IRacingTelemetryValue{Name: "OilTempWarning", Type: "int", Value: 0}
+	if value&1 != 0 {
+		telementryMap["WaterTempWarning"] = IRacingTelemetryValue{Name: "WaterTempWarning", Type: "int", Value: 1}
+	}
+	if value&2 != 0 {
+		telementryMap["FuelPressureWarning"] = IRacingTelemetryValue{Name: "FuelPressureWarning", Type: "int", Value: 1}
+	}
+	if value&4 != 0 {
+		telementryMap["OilPressureWarning"] = IRacingTelemetryValue{Name: "OilPressureWarning", Type: "int", Value: 1}
+	}
+	if value&8 != 0 {
+		telementryMap["EngineStalled"] = IRacingTelemetryValue{Name: "EngineStalled", Type: "int", Value: 1}
+	}
+	if value&16 != 0 {
+		telementryMap["PitSpeedLimiter"] = IRacingTelemetryValue{Name: "PitSpeedLimiter", Type: "int", Value: 1}
+	}
+	if value&32 != 0 {
+		telementryMap["RevLimiterActive"] = IRacingTelemetryValue{Name: "RevLimiterActive", Type: "int", Value: 1}
+	}
+	if value&64 != 0 {
+		telementryMap["OilTempWarning"] = IRacingTelemetryValue{Name: "OilTempWarning", Type: "int", Value: 1}
 	}
 }
 
@@ -295,7 +308,7 @@ func TelemetryToDataFrame(tm IRacingTelemetryMap) (*data.Frame, error) {
 	for _, value := range tm {
 		field, err := value.TelemetryValueToField()
 		if err != nil {
-			log.DefaultLogger.Debug("Error converting value", "error", err)
+			log.DefaultLogger.Debug("Error converting value to field", "error", err)
 		} else {
 			frame.Fields = append(frame.Fields, field)
 		}
@@ -321,9 +334,21 @@ func (telemetryValue IRacingTelemetryValue) TelemetryValueToField() (*data.Field
 	case "int32":
 		value, ok := telemetryValue.Value.(int32)
 		if !ok {
-			return nil, errors.New(fmt.Sprintf("error converting value to %s", telemetryValue.Type))
+			return nil, errors.New(fmt.Sprintf("error converting value %v to %s", telemetryValue.Value, telemetryValue.Type))
 		}
 		return data.NewField(telemetryValue.Name, nil, []int32{value}), nil
+	case "uint32":
+		value, ok := telemetryValue.Value.(uint32)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("error converting value %v to %s", telemetryValue.Value, telemetryValue.Type))
+		}
+		return data.NewField(telemetryValue.Name, nil, []uint32{value}), nil
+	case "int":
+		value, ok := telemetryValue.Value.(int)
+		if !ok {
+			return nil, errors.New(fmt.Sprintf("error converting value %v to %s", telemetryValue.Value, telemetryValue.Type))
+		}
+		return data.NewField(telemetryValue.Name, nil, []int32{int32(value)}), nil
 	case "bool":
 		value, ok := telemetryValue.Value.(bool)
 		if !ok {

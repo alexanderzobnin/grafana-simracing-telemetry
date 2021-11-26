@@ -116,6 +116,7 @@ export const iRacingOptions = [
     { label: 'LapDeltaToSessionLastlLap_DD', value: 'LapDeltaToSessionLastlLap_DD'},
     { label: 'LapDeltaToSessionLastlLap_OK', value: 'LapDeltaToSessionLastlLap_OK'},
     { label: 'Speed', value: 'Speed'},
+    { label: 'SpeedKmh', value: 'SpeedKmh'},
     { label: 'Yaw', value: 'Yaw'},
     { label: 'YawNorth', value: 'YawNorth'},
     { label: 'Pitch', value: 'Pitch'},
@@ -415,4 +416,5 @@ export const iRacingOptions = [
     { label: 'EngineStalled', value: 'EngineStalled' },
     { label: 'PitSpeedLimiter', value: 'PitSpeedLimiter' },
     { label: 'RevLimiterActive', value: 'RevLimiterActive' },
+    { label: 'OilTempWarning', value: 'OilTempWarning' },
 ];
