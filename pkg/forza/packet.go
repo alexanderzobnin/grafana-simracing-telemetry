@@ -96,7 +96,7 @@ type TelemetryFrame struct {
 	Clutch                               uint8
 	HandBrake                            uint8
 	Gear                                 uint8
-	Steer                                uint8
+	Steer                                int8
 	NormalizedDrivingLine                int8
 	NormalizedAIBrakeDifference          int8
 }
@@ -355,7 +355,7 @@ func convertTelemetryValues(f TelemetryFrame) TelemetryFrameConverted {
 		Clutch:                               float32(f.Clutch) / 255,
 		HandBrake:                            float32(f.HandBrake) / 255,
 		Gear:                                 f.Gear,
-		Steer:                                float32(f.Steer) / 255,
+		Steer:                                float32(f.Steer) / 255 * 2,
 		NormalizedDrivingLine:                f.NormalizedDrivingLine,
 		NormalizedAIBrakeDifference:          f.NormalizedAIBrakeDifference,
 		CarAttitude:                          carAttitude,
