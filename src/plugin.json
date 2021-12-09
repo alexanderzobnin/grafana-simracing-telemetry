@@ -59,6 +59,11 @@
       "type": "dashboard",
       "name": "iRacing Basic",
       "path": "dashboards/iRacing/iRacing_Basic.json"
+    },
+    {
+      "type": "dashboard",
+      "name": "Forza Basic",
+      "path": "dashboards/Forza/Forza_Basic.json"
     }
   ],
   "dependencies": {
