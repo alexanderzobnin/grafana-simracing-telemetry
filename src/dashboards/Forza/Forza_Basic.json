@@ -1,0 +1,2544 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 69,
+      "panels": [],
+      "title": "Car info",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "No"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "Yes"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 0,
+        "y": 1
+      },
+      "id": 59,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "IsRaceOn",
+          "withStreaming": true
+        }
+      ],
+      "title": "In Race?",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "#32c0d9",
+                  "index": 0,
+                  "text": "D"
+                },
+                "1": {
+                  "color": "yellow",
+                  "index": 1,
+                  "text": "C"
+                },
+                "2": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": "B"
+                },
+                "3": {
+                  "color": "red",
+                  "index": 3,
+                  "text": "A"
+                },
+                "4": {
+                  "color": "purple",
+                  "index": 4,
+                  "text": "S1"
+                },
+                "5": {
+                  "color": "blue",
+                  "index": 5,
+                  "text": "S2"
+                },
+                "6": {
+                  "index": 6,
+                  "text": "S3"
+                },
+                "7": {
+                  "index": 7,
+                  "text": "X"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 3,
+        "y": 1
+      },
+      "id": 57,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "CarClass",
+          "withStreaming": true
+        }
+      ],
+      "title": "Class",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 5,
+        "y": 1
+      },
+      "id": 55,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "CarPerformanceIndex",
+          "withStreaming": true
+        }
+      ],
+      "title": "Performance",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "FWD"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "RWD"
+                },
+                "2": {
+                  "index": 2,
+                  "text": "AWD"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 8,
+        "y": 1
+      },
+      "id": 58,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "DrivetrainType",
+          "withStreaming": true
+        }
+      ],
+      "title": "Drivetrain",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "11": {
+                  "index": 0,
+                  "text": "Modern Super Cars"
+                },
+                "12": {
+                  "index": 1,
+                  "text": "Retro Super Cars"
+                },
+                "13": {
+                  "index": 2,
+                  "text": "Hyper Cars"
+                },
+                "14": {
+                  "index": 3,
+                  "text": "Retro Saloons"
+                },
+                "16": {
+                  "index": 4,
+                  "text": "Vans & Utility"
+                },
+                "17": {
+                  "index": 5,
+                  "text": "Retro Sports Cars"
+                },
+                "18": {
+                  "index": 6,
+                  "text": "Modern Sports Cars"
+                },
+                "19": {
+                  "index": 7,
+                  "text": "Super Saloons"
+                },
+                "20": {
+                  "index": 8,
+                  "text": "Classic Racers"
+                },
+                "21": {
+                  "index": 9,
+                  "text": "Cult Cars"
+                },
+                "22": {
+                  "index": 10,
+                  "text": "Rare Classics"
+                },
+                "25": {
+                  "index": 11,
+                  "text": "Super Hot Hatch"
+                },
+                "29": {
+                  "index": 12,
+                  "text": "Rods & Customs"
+                },
+                "30": {
+                  "index": 13,
+                  "text": "Retro Muscle"
+                },
+                "31": {
+                  "index": 14,
+                  "text": "Modern Muscle"
+                },
+                "32": {
+                  "index": 15,
+                  "text": "Retro Rally"
+                },
+                "33": {
+                  "index": 16,
+                  "text": "Classic Rally"
+                },
+                "34": {
+                  "index": 17,
+                  "text": "Rally Monsters"
+                },
+                "35": {
+                  "index": 18,
+                  "text": "Modern Rally"
+                },
+                "36": {
+                  "index": 19,
+                  "text": "GT Cars"
+                },
+                "37": {
+                  "index": 20,
+                  "text": "Super GT"
+                },
+                "38": {
+                  "index": 21,
+                  "text": "Extreme Offroad"
+                },
+                "39": {
+                  "index": 22,
+                  "text": "Sports Utility Heroes"
+                },
+                "40": {
+                  "index": 23,
+                  "text": "Offroad"
+                },
+                "41": {
+                  "index": 24,
+                  "text": "Offroad Buggies"
+                },
+                "42": {
+                  "index": 25,
+                  "text": "Classic Sports Cars"
+                },
+                "43": {
+                  "index": 26,
+                  "text": "Track Toys"
+                },
+                "44": {
+                  "index": 27,
+                  "text": "Vintage Racers"
+                },
+                "45": {
+                  "index": 28,
+                  "text": "Trucks"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 11,
+        "y": 1
+      },
+      "id": 56,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "CarCategory",
+          "withStreaming": false
+        }
+      ],
+      "title": "Category",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "EV"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 1
+      },
+      "id": 52,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/^NumCylinders$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "NumCylinders",
+          "withStreaming": true
+        }
+      ],
+      "title": "Cyclinders",
+      "type": "stat"
+    },
+    {
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 18,
+        "y": 1
+      },
+      "id": 73,
+      "options": {
+        "contentType": "application/json",
+        "icon": "capture",
+        "isAuth": false,
+        "method": "GET",
+        "orientation": "center",
+        "text": "Record",
+        "type": "query",
+        "url": "http://localhost:3000/api/datasources/4/resources/record",
+        "variant": "primary"
+      },
+      "type": "cloudspout-button-panel"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 65,
+      "panels": [],
+      "title": "Car Data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 0,
+        "y": 4
+      },
+      "id": 48,
+      "maxDataPoints": 3600,
+      "options": {
+        "chartStyle": 1,
+        "fillOpacity": 0.7,
+        "symbolSize": 10,
+        "xAxis": {
+          "col": 1
+        },
+        "xAxisExtents": {},
+        "yAxis": {
+          "col": 3
+        },
+        "yAxisExtents": {},
+        "zAxis": {
+          "col": 2
+        },
+        "zAxisExtents": {}
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "PositionX",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "telemetry": "PositionY",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "telemetry": "PositionZ",
+          "withStreaming": true
+        }
+      ],
+      "title": "Geo Location",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "bilibala-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "RPM",
+          "mappings": [],
+          "max": 10000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 6500
+              }
+            ]
+          },
+          "unit": "rotrpm"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "EngineMaxRpm"
+            },
+            "properties": [
+              {
+                "id": "max"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 13,
+        "x": 9,
+        "y": 4
+      },
+      "id": 2,
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "CurrentEngineRpm",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": true,
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "telemetry": "EngineIdleRpm",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": true,
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "telemetry": "EngineMaxRpm",
+          "withStreaming": true
+        }
+      ],
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "N"
+                },
+                "-1": {
+                  "index": 1,
+                  "text": "R"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-yellow",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 22,
+        "y": 4
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Gear",
+          "withStreaming": true
+        }
+      ],
+      "title": "Gear",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "Neutral"
+                },
+                "1": {
+                  "color": "purple",
+                  "index": 1,
+                  "text": "Understeer"
+                },
+                "2": {
+                  "color": "red",
+                  "index": 2,
+                  "text": "Oversteer"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 9,
+        "y": 6
+      },
+      "id": 62,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "CarAttitude",
+          "withStreaming": true
+        }
+      ],
+      "title": "Attitude",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "OK"
+                },
+                "1": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "Lost"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 12,
+        "y": 6
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "IsTractionLost",
+          "withStreaming": true
+        }
+      ],
+      "title": "Traction lost",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              },
+              {
+                "color": "purple",
+                "value": 0.5
+              },
+              {
+                "color": "red",
+                "value": 0.8
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 15,
+        "y": 6
+      },
+      "id": 70,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Throttle",
+          "withStreaming": true
+        }
+      ],
+      "title": "Throttle",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              },
+              {
+                "color": "purple",
+                "value": 0.5
+              },
+              {
+                "color": "red",
+                "value": 0.8
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 17,
+        "y": 6
+      },
+      "id": 71,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Brake",
+          "withStreaming": true
+        }
+      ],
+      "title": "Brake",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "forceNm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 19,
+        "y": 6
+      },
+      "id": 36,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Torque",
+          "withStreaming": true
+        }
+      ],
+      "title": "Torque",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "max": 1,
+          "min": -1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 22,
+        "y": 7
+      },
+      "id": 46,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {
+          "valueSize": 1
+        }
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Steer",
+          "withStreaming": true
+        }
+      ],
+      "title": "Steering",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 250,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 200
+              }
+            ]
+          },
+          "unit": "velocitykmh"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 9,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "Speed",
+          "withStreaming": true
+        }
+      ],
+      "title": "Speed",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 75,
+      "panels": [],
+      "title": "Detail data",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 14
+      },
+      "id": 50,
+      "options": {
+        "chartStyle": 0,
+        "fillOpacity": 0.4,
+        "symbolSize": 3,
+        "xAxis": {
+          "col": 1
+        },
+        "xAxisExtents": {},
+        "yAxis": {
+          "col": 3
+        },
+        "yAxisExtents": {},
+        "zAxis": {
+          "col": 2
+        },
+        "zAxisExtents": {}
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AngularVelocityX",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AngularVelocityY",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AngularVelocityZ",
+          "withStreaming": true
+        }
+      ],
+      "title": "Angular Velocity",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "bilibala-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 14
+      },
+      "id": 49,
+      "options": {
+        "chartStyle": 0,
+        "fillOpacity": 0.3,
+        "symbolSize": 3,
+        "xAxis": {
+          "col": 1
+        },
+        "xAxisExtents": {},
+        "yAxis": {
+          "col": 3
+        },
+        "yAxisExtents": {},
+        "zAxis": {
+          "col": 2
+        },
+        "zAxisExtents": {}
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AccelerationX",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AccelerationY",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": true,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "AccelerationZ",
+          "withStreaming": true
+        }
+      ],
+      "title": "Acceleration",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "bilibala-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "max": 3,
+          "min": -3,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-yellow",
+                "value": null
+              },
+              {
+                "color": "purple",
+                "value": -5
+              },
+              {
+                "color": "super-light-blue",
+                "value": -2
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 2
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 7,
+        "x": 8,
+        "y": 14
+      },
+      "id": 44,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "Pitch",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "Yaw",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "Roll",
+          "withStreaming": true
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "pressurebar"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 15,
+        "y": 14
+      },
+      "id": 10,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "Boost",
+          "withStreaming": true
+        }
+      ],
+      "title": "Boost",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 3,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "degree"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 8,
+        "y": 16
+      },
+      "id": 53,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireCombinedSlipFrontLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireCombinedSlipFrontRight",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireCombinedSlipRearLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "D",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireCombinedSlipRearRight",
+          "withStreaming": true
+        }
+      ],
+      "title": "Tire Slip",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "TireCombinedSlipFrontLeft": "FL",
+              "TireCombinedSlipFrontRight": "FR",
+              "TireCombinedSlipRearLeft": "RL",
+              "TireCombinedSlipRearRight": "RR"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 10,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireTempFrontLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireTempFrontRight",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireTempRearLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "D",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "TireTempRearRight",
+          "withStreaming": true
+        }
+      ],
+      "title": "Tire Temperature",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "TireTempFrontLeft": "FL",
+              "TireTempFrontRight": "FR",
+              "TireTempRearLeft": "RL",
+              "TireTempRearRight": "RR"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0.2
+              }
+            ]
+          },
+          "unit": "cm"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 12,
+        "y": 16
+      },
+      "id": 51,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "SuspensionTravelMetersFrontRight",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "SuspensionTravelMetersFrontLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "SuspensionTravelMetersRearLeft",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "D",
+          "source": "forzaHorizon5",
+          "sourceFrom": "$playbackFile",
+          "telemetry": "SuspensionTravelMetersRearRight",
+          "withStreaming": true
+        }
+      ],
+      "title": "Suspension Travel",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "FR",
+            "binary": {
+              "left": "SuspensionTravelMetersFrontRight",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "FL",
+            "binary": {
+              "left": "SuspensionTravelMetersFrontLeft",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "RL",
+            "binary": {
+              "left": "SuspensionTravelMetersRearLeft",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "RR",
+            "binary": {
+              "left": "SuspensionTravelMetersRearRight",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "time",
+                "FR",
+                "FL",
+                "RL",
+                "RR"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 67,
+      "panels": [],
+      "title": "Race info",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 60,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "LapNumber",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "telemetry": "LastLap",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "telemetry": "CurrentLap",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "D",
+          "source": "forzaHorizon5",
+          "telemetry": "BestLap",
+          "withStreaming": true
+        }
+      ],
+      "title": "Attitude",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-simracing-telemetry-datasource",
+        "uid": "${datasource}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "id": 63,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "recording": "$recording",
+          "refId": "A",
+          "source": "forzaHorizon5",
+          "telemetry": "DistanceTraveled",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "B",
+          "source": "forzaHorizon5",
+          "telemetry": "CurrentRaceTime",
+          "withStreaming": true
+        },
+        {
+          "datasource": {
+            "type": "grafana-simracing-telemetry-datasource",
+            "uid": "${datasource}"
+          },
+          "graph": false,
+          "hide": false,
+          "recording": "$recording",
+          "refId": "C",
+          "source": "forzaHorizon5",
+          "telemetry": "RacePosition",
+          "withStreaming": true
+        }
+      ],
+      "title": "Attitude",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 33,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "live",
+          "value": "live"
+        },
+        "datasource": {
+          "type": "grafana-simracing-telemetry-datasource",
+          "uid": "${datasource}"
+        },
+        "definition": "recordings_query",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "recording",
+        "options": [],
+        "query": "recordings_query",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "simracing-telemetry-datasource",
+          "value": "simracing-telemetry-datasource"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "grafana-simracing-telemetry-datasource",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "uid": "ForzaHorizonHMpcDx27z",
+  "title": "Forza Horizon",
+  "version": 56,
+  "weekStart": ""
+}

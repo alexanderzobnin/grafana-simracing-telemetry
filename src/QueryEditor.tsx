@@ -8,9 +8,11 @@ import { defaultQuery, MyDataSourceOptions, TelemetryQuery } from './types';
 import {dirtRallyOptions} from "./dirtRallyOptions";
 import {accOptions} from "./accOptions";
 import {iRacingOptions} from "./iRacingOptions";
+import {forzaHorizonOptions} from "./forzaHorizonOptions";
 
 export const sourceOptions = [
   { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
+  { label: 'Forza Horizon 5', value: 'forzaHorizon5' },
   { label: 'Assetto Corsa Competizione', value: 'acc' },
   { label: 'iRacing', value: 'iRacing' },
 ];
@@ -52,6 +54,8 @@ export class QueryEditor extends PureComponent<Props> {
     let options = dirtRallyOptions;
     if (source === 'acc') {
       options = accOptions;
+    } else if (source === 'forzaHorizon5') {
+      options = forzaHorizonOptions;
     } else if (source === 'iRacing') {
       options = iRacingOptions;
     }
