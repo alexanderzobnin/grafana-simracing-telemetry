@@ -13,7 +13,7 @@ import (
 func main() {
 	fmt.Println("iRacing telemetry reader")
 
-	iracingTelemetryChan := make(chan iracing.IRacingTelemetry)
+	iracingTelemetryChan := make(chan iracing.IRacingTelemetryMap)
 	iracingCtrlChan := make(chan string)
 
 	updateInterval := time.Millisecond * 16
