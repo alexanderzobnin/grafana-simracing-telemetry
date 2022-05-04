@@ -7,14 +7,17 @@
   "backend": true,
   "executable": "gpx_simracing-telemetry-datasource",
   "info": {
-    "description": "Plugin for fetching telemetry data from simracing titles",
+    "description": "Plugin for visualizing telemetry data from simracing titles.",
     "author": {
       "name": "Grafana",
       "url": "https://grafana.com"
     },
     "keywords": [
       "simracing",
-      "dirt rally"
+      "dirt rally",
+      "iRacing",
+      "forza horizon",
+      "assetto corsa"
     ],
     "logos": {
       "small": "img/logo.svg",
@@ -23,11 +26,11 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/grafana/grafana-starter-datasource-backend"
+        "url": "https://github.com/grafana/grafana-simracing-telemetry"
       },
       {
         "name": "License",
-        "url": "https://github.com/grafana/grafana-starter-datasource-backend/blob/master/LICENSE"
+        "url": "https://github.com/grafana/grafana-simracing-telemetry/blob/master/LICENSE"
       }
     ],
     "screenshots": [],
