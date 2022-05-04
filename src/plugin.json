@@ -12,13 +12,7 @@
       "name": "Grafana",
       "url": "https://grafana.com"
     },
-    "keywords": [
-      "simracing",
-      "dirt rally",
-      "iRacing",
-      "forza horizon",
-      "assetto corsa"
-    ],
+    "keywords": ["simracing", "dirt rally", "iRacing", "forza horizon", "assetto corsa"],
     "logos": {
       "small": "img/logo.svg",
       "large": "img/logo.svg"

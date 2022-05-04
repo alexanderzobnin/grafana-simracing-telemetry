@@ -29,7 +29,7 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
         let { telemetry, graph } = target;
         const telemetryField = telemetry || 'Speed';
 
-        const channel = `ds/${this.uid}/${target.source || 'dirtRally2'}`
+        const channel = `ds/${this.uid}/${target.source || 'dirtRally2'}`;
         const addr = parseLiveChannelAddress(channel);
         if (!isValidLiveChannelAddress(addr)) {
           continue;
@@ -52,12 +52,12 @@ export class DataSource extends DataSourceWithBackend<TelemetryQuery, MyDataSour
         }
 
         queries.push(
-            getGrafanaLiveSrv().getDataStream({
-              key: `${request.requestId}.${counter++}`,
-              addr: addr!,
-              filter,
-              buffer,
-            })
+          getGrafanaLiveSrv().getDataStream({
+            key: `${request.requestId}.${counter++}`,
+            addr: addr!,
+            filter,
+            buffer,
+          })
         );
       }
     }

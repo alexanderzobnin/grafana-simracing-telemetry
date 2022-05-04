@@ -1,14 +1,14 @@
 import { defaults } from 'lodash';
 
 import React, { PureComponent, SyntheticEvent } from 'react';
-import {InlineField, InlineSwitch, Select} from '@grafana/ui';
-import {QueryEditorProps, SelectableValue} from '@grafana/data';
+import { InlineField, InlineSwitch, Select } from '@grafana/ui';
+import { QueryEditorProps, SelectableValue } from '@grafana/data';
 import { DataSource } from './datasource';
 import { defaultQuery, MyDataSourceOptions, TelemetryQuery } from './types';
-import {dirtRallyOptions} from "./dirtRallyOptions";
-import {accOptions} from "./accOptions";
-import {iRacingOptions} from "./iRacingOptions";
-import {forzaHorizonOptions} from "./forzaHorizonOptions";
+import { dirtRallyOptions } from './dirtRallyOptions';
+import { accOptions } from './accOptions';
+import { iRacingOptions } from './iRacingOptions';
+import { forzaHorizonOptions } from './forzaHorizonOptions';
 
 export const sourceOptions = [
   { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
@@ -64,11 +64,11 @@ export class QueryEditor extends PureComponent<Props> {
       <div className="gf-form">
         <InlineField label="Source">
           <Select
-              width={25}
-              options={sourceOptions}
-              value={source}
-              onChange={this.onSourceChange}
-              defaultValue={'acc'}
+            width={25}
+            options={sourceOptions}
+            value={source}
+            onChange={this.onSourceChange}
+            defaultValue={'acc'}
           />
         </InlineField>
         <Select
@@ -79,18 +79,10 @@ export class QueryEditor extends PureComponent<Props> {
           defaultValue={'Time'}
         />
         <InlineField label="Enable streaming">
-          <InlineSwitch
-              value={withStreaming || false}
-              onChange={this.onWithStreamingChange}
-              css=""
-          />
+          <InlineSwitch value={withStreaming || false} onChange={this.onWithStreamingChange} css="" />
         </InlineField>
         <InlineField label="Graph">
-          <InlineSwitch
-              value={graph}
-              onChange={this.onGraphChange}
-              css=""
-          />
+          <InlineSwitch value={graph} onChange={this.onGraphChange} css="" />
         </InlineField>
       </div>
     );
