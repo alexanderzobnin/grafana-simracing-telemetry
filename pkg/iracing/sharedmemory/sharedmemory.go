@@ -1,3 +1,5 @@
+//go:build windows
+
 package sharedmemory
 
 import (
@@ -5,13 +7,14 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"strings"
+	"syscall"
+	"time"
+
 	"github.com/alexeymaximov/go-bio/mmap"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/log"
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"golang.org/x/sys/windows"
-	"strings"
-	"syscall"
-	"time"
 )
 
 var lastTickCount int32 = IntMax

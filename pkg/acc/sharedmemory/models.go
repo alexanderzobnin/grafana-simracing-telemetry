@@ -1,12 +1,15 @@
+//go:build windows
+
 package sharedmemory
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"time"
+
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"golang.org/x/text/encoding/unicode"
-	"time"
 )
 
 // SPageFilePhysics updates at each physics step. They all refer to the player’s car.
