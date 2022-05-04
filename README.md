@@ -4,6 +4,8 @@ Simracing Telemetry data source plugin makes it possible to visualize telemetry
 data from various simracing titles such as Assetto Corsa Competizione, iRacing 
 and others in [Grafana](https://grafana.com/).
 
+<img src="https://user-images.githubusercontent.com/4932851/166692176-6867ccf4-1726-438e-ba52-783696f412b1.png" />
+
 ## Features
 
 - Real-time telemetry data visualization
