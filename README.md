@@ -11,6 +11,8 @@ and others in [Grafana](https://grafana.com/).
 - Real-time telemetry data visualization
 - Highly customizable dashboards
 
+Here's a [demo video](https://vimeo.com/571685229) showing plugin capabilities.
+
 ## Supported titles
 
 Currently, plugin supports following games:
