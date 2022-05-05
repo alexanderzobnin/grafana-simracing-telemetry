@@ -83,16 +83,16 @@ extra steps to enable it.
 
 Here's instruction from [Race Department](https://www.racedepartment.com/downloads/dirt-rally-2-0-dashboard-telemetry-tool.26703/): 
 
-1. Locate the config file by going to the following path in windows explorer (Note: this may be different for you, depending on your operating system). Replace “{Yourusername}" with your username.
+1. Locate the config file by going to the following path in windows explorer (Note: this may be different for you, depending on your operating system). Replace "{Yourusername}" with your username.
    `C:\Users\{Yourusername}\Documents\My Games\DiRT Rally 2.0\hardwaresettings`
-2. Locate a file called “hardware_settings_config"
+2. Locate a file called "hardware_settings_config"
 3. Make a backup of this file (just in case).
 4. Open the file in a text editor (like notepad).
 5. Locate the following line:
 
    `<udp enabled="false" extradata="0" ip="127.0.0.1" port="20777" delay="1" />`
-6. Update “enabled" to “true".
-7. Update “extradata" to “3"
+6. Update "enabled" to "true".
+7. Update "extradata" to "3"
 8. Your new line of code should look like this:
 
    `<udp enabled="true" extradata="3" ip="127.0.0.1" port="20777" delay="1" />`
