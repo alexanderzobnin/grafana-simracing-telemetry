@@ -62,7 +62,7 @@ To install a plugin:
 ### Create data source
 
 Navigate to the [Configuration -> Data sources](http://localhost:3000/datasources) in Grafana
-side menu and click _Add data source_. Select simracing-telemetry-datasource from the list 
+side menu and click _Add data source_. Select _Simracing Telemetry_ from the list 
 and press _Save & test_. You can also enable _Default_ toggle near data source name
 to make data source default source when you create new queries.
 
