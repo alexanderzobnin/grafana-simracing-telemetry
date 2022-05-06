@@ -2,10 +2,11 @@ const GithubClient = require('./githubClient');
 const fs = require('fs');
 const path = require('path');
 
-const GRAFANA_ZABBIX_OWNER = 'alexanderzobnin';
-const GRAFANA_ZABBIX_REPO = 'grafana-zabbix';
+const PLUGIN_OWNER = 'alexanderzobnin';
+const PLUGIN_REPO = 'grafana-simracing-telemetry';
+const PLUGIN_PACKAGE_NAME = 'alexanderzobnin-simracingtelemetry-datasource';
 
-const github = new GithubClient(GRAFANA_ZABBIX_OWNER, GRAFANA_ZABBIX_REPO, true);
+const github = new GithubClient(PLUGIN_OWNER, PLUGIN_REPO, true);
 
 async function main() {
   let releaseVersion = '';
@@ -28,7 +29,7 @@ async function main() {
     process.exit(1);
   }
 
-  const releaseNotes = `# Grafana-Zabbix ${releaseVersion}`;
+  const releaseNotes = `# Grafana Simracing Telemetry ${releaseVersion}`;
   const preRelease = /(alpha|beta)/.test(releaseVersion);
 
   let releaseId;
@@ -96,13 +97,13 @@ async function main() {
 
   try {
     await publishAssets(
-      `alexanderzobnin-zabbix-app-${releaseVersion}.zip`,
-      `https://uploads.github.com/repos/${GRAFANA_ZABBIX_OWNER}/${GRAFANA_ZABBIX_REPO}/releases/${releaseId}/assets`
+      `${PLUGIN_PACKAGE_NAME}-${releaseVersion}.zip`,
+      `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
     );
     // Upload package info with md5 checksum
     await publishAssets(
       `info.json`,
-      `https://uploads.github.com/repos/${GRAFANA_ZABBIX_OWNER}/${GRAFANA_ZABBIX_REPO}/releases/${releaseId}/assets`
+      `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
     );
   } catch (reason) {
     console.error(reason);
