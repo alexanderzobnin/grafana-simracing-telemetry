@@ -194,7 +194,7 @@ func closeMapping(mapping *mmap.Mapping) {
 }
 
 func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
-	telementryMap := make(IRacingTelemetryMap)
+	telemetryMap := make(IRacingTelemetryMap)
 	for name, varHeader := range varHeadersMap {
 		switch varHeader.Type {
 		case 0:
@@ -211,7 +211,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 				log.DefaultLogger.Warn("Error converting bool value", "error", err)
 				break
 			}
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "bool", Value: value}
+			telemetryMap[name] = IRacingTelemetryValue{Name: name, Type: "bool", Value: value}
 		case 2:
 			// int
 			var value int32
@@ -222,7 +222,7 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 				log.DefaultLogger.Warn("Error converting int value", "error", err)
 				break
 			}
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "int32", Value: value}
+			telemetryMap[name] = IRacingTelemetryValue{Name: name, Type: "int32", Value: value}
 		case 3:
 			// bit field
 			var value [4]byte
@@ -234,9 +234,9 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 				break
 			}
 			flagValue := binary.LittleEndian.Uint32(value[:])
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "uint32", Value: flagValue}
+			telemetryMap[name] = IRacingTelemetryValue{Name: name, Type: "uint32", Value: flagValue}
 			if name == "EngineWarnings" {
-				readEngineWarnings(telementryMap, flagValue)
+				readEngineWarnings(telemetryMap, flagValue)
 			}
 		case 4:
 			// float32
@@ -251,12 +251,12 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 
 			if name == "Speed" {
 				speedKmph := value * 3.6
-				telementryMap["SpeedKmh"] = IRacingTelemetryValue{Name: "SpeedKmh", Type: "float32", Value: speedKmph}
+				telemetryMap["SpeedKmh"] = IRacingTelemetryValue{Name: "SpeedKmh", Type: "float32", Value: speedKmph}
 			}
 			if name == "Clutch" {
 				value = 1 - value
 			}
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float32", Value: value}
+			telemetryMap[name] = IRacingTelemetryValue{Name: name, Type: "float32", Value: value}
 		case 5:
 			// float64 (double)
 			var value float64
@@ -267,11 +267,11 @@ func convertToTelemetryMap(data []byte) IRacingTelemetryMap {
 				log.DefaultLogger.Warn("Error converting double value", "error", err)
 				break
 			}
-			telementryMap[name] = IRacingTelemetryValue{Name: name, Type: "float64", Value: value}
+			telemetryMap[name] = IRacingTelemetryValue{Name: name, Type: "float64", Value: value}
 		}
 	}
 
-	return telementryMap
+	return telemetryMap
 }
 
 func readEngineWarnings(telementryMap IRacingTelemetryMap, value uint32) {
