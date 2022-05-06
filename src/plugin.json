@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "type": "datasource",
   "name": "simracing-telemetry-datasource",
-  "id": "grafana-simracing-telemetry-datasource",
+  "id": "alexanderzobnin-simracingtelemetry-datasource",
   "metrics": true,
   "backend": true,
   "executable": "gpx_simracing-telemetry-datasource",
@@ -20,11 +20,11 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/grafana/grafana-simracing-telemetry"
+        "url": "https://github.com/alexanderzobnin/grafana-simracing-telemetry"
       },
       {
         "name": "License",
-        "url": "https://github.com/grafana/grafana-simracing-telemetry/blob/master/LICENSE"
+        "url": "https://github.com/alexanderzobnin/grafana-simracing-telemetry/blob/master/LICENSE"
       }
     ],
     "screenshots": [],

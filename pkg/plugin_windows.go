@@ -8,16 +8,16 @@ import (
 	"math/rand"
 	"time"
 
-	acc "github.com/grafana/simracing-telemetry-datasource/pkg/acc/sharedmemory"
-	"github.com/grafana/simracing-telemetry-datasource/pkg/dirtrally"
-	iracing "github.com/grafana/simracing-telemetry-datasource/pkg/iracing/sharedmemory"
+	acc "github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/acc/sharedmemory"
+	"github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/dirtrally"
+	iracing "github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/iracing/sharedmemory"
 
+	"github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/forza"
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/instancemgmt"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/log"
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"github.com/grafana/grafana-plugin-sdk-go/live"
-	"github.com/grafana/simracing-telemetry-datasource/pkg/forza"
 )
 
 var SharedMemoryUpdateInterval = time.Second / 60

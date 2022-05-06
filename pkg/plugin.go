@@ -8,8 +8,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/grafana/simracing-telemetry-datasource/pkg/dirtrally"
-	"github.com/grafana/simracing-telemetry-datasource/pkg/forza"
+	"github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/dirtrally"
+	"github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/forza"
 
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/instancemgmt"

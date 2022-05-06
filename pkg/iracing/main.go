@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	iracing "github.com/grafana/simracing-telemetry-datasource/pkg/iracing/sharedmemory"
+	iracing "github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/iracing/sharedmemory"
 )
 
 func main() {
