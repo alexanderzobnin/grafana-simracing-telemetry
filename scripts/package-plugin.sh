@@ -36,6 +36,6 @@ cp CHANGELOG.md ci/jobs/build_plugin/dist
 
 # Package and sign plugin
 echo -e "${GREEN}Packaging and signing plugin${NC}"
-yarn grafana-toolkit plugin:ci-package
+yarn grafana-toolkit plugin:ci-package --rootUrls http://localhost:3000
 
 echo -e "${GREEN}Packaged plugin located in ${BLUE}ci/packages${NC}"
