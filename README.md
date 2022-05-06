@@ -4,7 +4,7 @@ Simracing Telemetry data source plugin makes it possible to visualize telemetry
 data from various simracing titles such as Assetto Corsa Competizione, iRacing 
 and others in [Grafana](https://grafana.com/).
 
-<img src="https://user-images.githubusercontent.com/4932851/166692176-6867ccf4-1726-438e-ba52-783696f412b1.png" />
+<img src="https://user-images.githubusercontent.com/4932851/166692176-6867ccf4-1726-438e-ba52-783696f412b1.png"  alt=""/>
 
 ## Features
 
@@ -37,17 +37,20 @@ Thus, Windows now is the only supported platform.
 
 If you're not familiar with [Grafana](https://grafana.com/) software, [download](https://grafana.com/grafana/download?edition=oss&platform=windows)
 and install it first (select OSS edition and Windows platform). Read the Windows [installation guide](https://grafana.com/docs/grafana/latest/installation/windows/).
-Refer to [plugin istallation](https://grafana.com/docs/grafana/latest/plugins/installation/) guide and
+Refer to [plugin installation](https://grafana.com/docs/grafana/latest/plugins/installation/) guide and
 read how to install plugin. There are few ways how to do it.
 
-### Install pluign
+### Install plugin
 
-#### Install pluign from package
-Go to the [plugin page](https://grafana.com/grafana/plugins/grafana-simracing-telemetry-datasource/)
-and select _Installation_ tab. Scroll down and click _Download_ link under the _Install the Data Source_ section.
-Unpack it into your grafana plugins directory. Then, restart Grafana server.
+#### Install plugin from package
+
+Go to the [github releases](https://github.com/alexanderzobnin/grafana-simracing-telemetry/releases)
+and select latest release. Download `alexanderzobnin-simracingtelemetry-datasource-x.x.x.zip` file.
+Unpack it into your grafana plugins directory (by default it's `C:\Program Files\GrafanaLabs\grafana\data\plugins`). 
+Create `plugins` folder if it's not exist. Then, restart Grafana server. It can be done within a task manager (services tab).
 
 #### Install via Plugin catalog
+
 In order to be able to install / uninstall / update plugins using plugin catalog, 
 you must enable it via the `plugin_admin_enabled` flag in the [configuration](https://grafana.com/docs/grafana/latest/administration/configuration/#plugin_admin_enabled) file. 
 Before following the steps below, make sure you are logged in as a Grafana administrator.
@@ -83,7 +86,7 @@ extra steps to enable it.
 
 Here's instruction from [Race Department](https://www.racedepartment.com/downloads/dirt-rally-2-0-dashboard-telemetry-tool.26703/): 
 
-1. Locate the config file by going to the following path in windows explorer (Note: this may be different for you, depending on your operating system). Replace "{Yourusername}" with your username.
+1. Locate the config file by going to the following path in Windows explorer (Note: this may be different for you, depending on your operating system). Replace "{Yourusername}" with your username.
    `C:\Users\{Yourusername}\Documents\My Games\DiRT Rally 2.0\hardwaresettings`
 2. Locate a file called "hardware_settings_config"
 3. Make a backup of this file (just in case).
