@@ -45,7 +45,7 @@ read how to install plugin. There are few ways how to do it.
 #### Install plugin from package
 
 Go to the [github releases](https://github.com/alexanderzobnin/grafana-simracing-telemetry/releases)
-and select latest release. Download `alexanderzobnin-simracingtelemetry-datasource-x.x.x.zip` file.
+and select latest release. Download `alexanderzobnin-simracingtelemetry-datasource-x.x.x.zip` file from the assets.
 Unpack it into your grafana plugins directory (by default it's `C:\Program Files\GrafanaLabs\grafana\data\plugins`). 
 Create `plugins` folder if it's not exist. Then, restart Grafana server. It can be done within a task manager (services tab).
 
