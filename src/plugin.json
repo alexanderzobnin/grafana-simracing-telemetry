@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "type": "datasource",
-  "name": "simracing-telemetry-datasource",
+  "name": "Simracing Telemetry",
   "id": "alexanderzobnin-simracingtelemetry-datasource",
   "metrics": true,
   "backend": true,
