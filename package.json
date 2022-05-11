@@ -1,6 +1,6 @@
 {
   "name": "grafana-simracing-telemetry",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Plugin for fetching telemetry data from simracing titles",
   "scripts": {
     "build": "grafana-toolkit plugin:build",
