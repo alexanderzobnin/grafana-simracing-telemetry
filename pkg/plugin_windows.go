@@ -128,7 +128,7 @@ func (d *SimracingTelemetryDatasource) query(_ context.Context, pCtx backend.Plu
 // datasource configuration page which allows users to verify that
 // a datasource is working as expected.
 func (d *SimracingTelemetryDatasource) CheckHealth(_ context.Context, req *backend.CheckHealthRequest) (*backend.CheckHealthResult, error) {
-	log.DefaultLogger.Info("CheckHealth called", "request", req)
+	log.DefaultLogger.Debug("CheckHealth called", "request", req)
 
 	var status = backend.HealthStatusOk
 	var message = "Data source is working"
@@ -142,7 +142,7 @@ func (d *SimracingTelemetryDatasource) CheckHealth(_ context.Context, req *backe
 // SubscribeStream is called when a client wants to connect to a stream. This callback
 // allows sending the first message.
 func (d *SimracingTelemetryDatasource) SubscribeStream(_ context.Context, req *backend.SubscribeStreamRequest) (*backend.SubscribeStreamResponse, error) {
-	log.DefaultLogger.Info("SubscribeStream called", "request", req)
+	log.DefaultLogger.Info("SubscribeStream called", "path", req.Path)
 
 	status := backend.SubscribeStreamStatusOK
 	return &backend.SubscribeStreamResponse{
@@ -153,7 +153,7 @@ func (d *SimracingTelemetryDatasource) SubscribeStream(_ context.Context, req *b
 // RunStream is called once for any open channel. Results are shared with everyone
 // subscribed to the same channel.
 func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backend.RunStreamRequest, sender *backend.StreamSender) error {
-	log.DefaultLogger.Info("RunStream called", "request", req)
+	log.DefaultLogger.Info("RunStream called", "path", req.Path)
 
 	telemetryChan := make(chan dirtrally.TelemetryFrame)
 	telemetryErrorChan := make(chan error)
@@ -265,7 +265,7 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 
 // PublishStream is called when a client sends a message to the stream.
 func (d *SimracingTelemetryDatasource) PublishStream(_ context.Context, req *backend.PublishStreamRequest) (*backend.PublishStreamResponse, error) {
-	log.DefaultLogger.Info("PublishStream called", "request", req)
+	log.DefaultLogger.Info("PublishStream called", "path", req.Path)
 
 	// Do not allow publishing at all.
 	return &backend.PublishStreamResponse{
