@@ -40,13 +40,18 @@ and install it first (select OSS edition and Windows platform). Read the Windows
 Refer to [plugin installation](https://grafana.com/docs/grafana/latest/plugins/installation/) guide and
 read how to install plugin. There are few ways how to do it.
 
+**Important note:** I recommend installing Grafana as a [standalone Windows binary](https://grafana.com/docs/grafana/latest/installation/windows/#install-standalone-windows-binary)
+and not running it as a Windows service, because there's an issue with accessing 
+memory-mapped files (so it affects Assetto Corsa and iRacing) in this mode. Read more in [corresponding issue](https://github.com/alexanderzobnin/grafana-simracing-telemetry/issues/5).
+
 ### Install plugin
 
 #### Install plugin from package
 
 Go to the [github releases](https://github.com/alexanderzobnin/grafana-simracing-telemetry/releases)
 and select latest release. Download `alexanderzobnin-simracingtelemetry-datasource-x.x.x.zip` file from the assets.
-Unpack it into your grafana plugins directory (by default it's `C:\Program Files\GrafanaLabs\grafana\data\plugins`). 
+Unpack it into your grafana plugins directory (by default it's `C:\Program Files\GrafanaLabs\grafana\data\plugins` or
+`data\plugins` inside unpacked grafana folder when it's installed from zip file). 
 Create `plugins` folder if it's not exist. Then, restart Grafana server. It can be done within a task manager (services tab).
 
 #### Install via Plugin catalog
