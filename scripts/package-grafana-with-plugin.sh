@@ -41,7 +41,8 @@ cp ../../conf/dashboards.yaml "./grafana-${GRAFANA_VERSION}/conf/provisioning/da
 
 # Make zip
 echo -e "${GREEN}Packaging Grafana into zip${NC}"
-zip -r "grafana-${GRAFANA_VERSION}-bundled.windows-amd64.zip" "grafana-${GRAFANA_VERSION}/"
+zip -r "grafana-bundled.windows-amd64.zip" "grafana-${GRAFANA_VERSION}/"
+mv grafana-bundled.windows-amd64.zip ../packages
 
-echo -e "${GREEN}Packaged Grafana located in ${BLUE}ci/grafana${NC}"
-ls -lh ./
+echo -e "${GREEN}Packaged Grafana located in ${BLUE}ci/packages${NC}"
+ls -lh ../packages

@@ -39,7 +39,7 @@ If you're not familiar with [Grafana](https://grafana.com/) software, I would re
 to use bundled Grafana package which shipped with this plugin. It contains Grafana with 
 installed and preconfigured data source and dashboards. In order to use it, navigate to the
 [github releases](https://github.com/alexanderzobnin/grafana-simracing-telemetry/releases) page
-and download `grafana-x.x.x-bundled.windows-amd64.zip` package from assets. Then, unpack it and go to the
+and download `grafana-bundled.windows-amd64.zip` package from assets. Then, unpack it and go to the
 `grafana-x.x.x\bin` folder. Right click `grafana-server.exe` and run it as an admin to start Grafana server. 
 Windows might ask you to allow network access for the Grafana server (it required to get telemetry from games over the network). 
 Then open http://localhost:3000 in a browser. You will see Grafana login page. 

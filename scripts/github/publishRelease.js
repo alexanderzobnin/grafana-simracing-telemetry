@@ -100,10 +100,20 @@ async function main() {
       `${PLUGIN_PACKAGE_NAME}-${releaseVersion}.zip`,
       `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
     );
+    // Upload package sha1 checksum
+    await publishAssets(
+        `${PLUGIN_PACKAGE_NAME}-${releaseVersion}.zip.sha1`,
+        `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
+    );
     // Upload package info with md5 checksum
     await publishAssets(
       `info.json`,
       `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
+    );
+    // Upload bundled Grafana
+    await publishAssets(
+        `grafana-bundled.windows-amd64.zip`,
+        `https://uploads.github.com/repos/${PLUGIN_OWNER}/${PLUGIN_REPO}/releases/${releaseId}/assets`
     );
   } catch (reason) {
     console.error(reason);
