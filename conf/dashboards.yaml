@@ -12,10 +12,10 @@ providers:
 
   # If grafana-server run from bin folder
   - name: 'Simracing telemetry dashboards backup'
-      folder: ''
-      folderUid: ''
-      type: file
-      allowUiUpdates: true
-      updateIntervalSeconds: 60
-      options:
-        path: ../data/plugins/alexanderzobnin-simracingtelemetry-datasource/dashboards
+    folder: ''
+    folderUid: ''
+    type: file
+    allowUiUpdates: true
+    updateIntervalSeconds: 60
+    options:
+      path: ../data/plugins/alexanderzobnin-simracingtelemetry-datasource/dashboards
