@@ -1,0 +1,6 @@
+apiVersion: 1
+
+datasources:
+  - name: Simracing Telemetry
+    type: alexanderzobnin-simracingtelemetry-datasource
+    isDefault: true

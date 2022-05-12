@@ -16,6 +16,10 @@ then
   exit 1
 fi
 
+# Clean up
+echo -e "${GREEN}Clean up${NC}"
+rm -rf dist
+
 # Install Dependencies
 echo -e "${GREEN}Installing dependencies${NC}"
 yarn install
