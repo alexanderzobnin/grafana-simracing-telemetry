@@ -35,8 +35,21 @@ Thus, Windows now is the only supported platform.
 
 ## Getting started
 
-If you're not familiar with [Grafana](https://grafana.com/) software, [download](https://grafana.com/grafana/download?edition=oss&platform=windows)
-and install it first (select OSS edition and Windows platform). Read the Windows [installation guide](https://grafana.com/docs/grafana/latest/installation/windows/).
+If you're not familiar with [Grafana](https://grafana.com/) software, I would recommend
+to use bundled Grafana package which shipped with this plugin. It contains Grafana with 
+installed and preconfigured data source and dashboards. In order to use it, navigate to the
+[github releases](https://github.com/alexanderzobnin/grafana-simracing-telemetry/releases) page
+and download `grafana-x.x.x-bundled.windows-amd64.zip` package from assets. Then, unpack it and go to the
+`grafana-x.x.x\bin` folder. Right click `grafana-server.exe` and run it as an admin to start Grafana server. 
+Windows might ask you to allow network access for the Grafana server (it required to get telemetry from games over the network). 
+Then open http://localhost:3000 in a browser. You will see Grafana login page. 
+Default credentials are admin:admin. Now you're ready to go. Click on _General/Home_ at the top and select
+dashboard you want to start with.
+
+### Install Grafana
+
+[Download](https://grafana.com/grafana/download?edition=oss&platform=windows) Grafana from
+official website and install it (select OSS edition and Windows platform). Read the Windows [installation guide](https://grafana.com/docs/grafana/latest/installation/windows/).
 Refer to [plugin installation](https://grafana.com/docs/grafana/latest/plugins/installation/) guide and
 read how to install plugin. There are few ways how to do it.
 
