@@ -92,6 +92,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -164,6 +165,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -236,6 +238,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -299,6 +302,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -369,6 +373,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -426,6 +431,7 @@
         "textMode": "name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -480,6 +486,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -535,6 +542,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -594,6 +602,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -654,6 +663,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -714,6 +724,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -773,6 +784,7 @@
         }
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -837,6 +849,7 @@
         }
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -893,6 +906,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -948,6 +962,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",

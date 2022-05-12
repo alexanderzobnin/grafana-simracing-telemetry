@@ -107,6 +107,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -165,6 +166,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -226,6 +228,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -287,6 +290,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -349,6 +353,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -422,6 +427,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -480,6 +486,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -537,6 +544,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -596,6 +604,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -671,6 +680,7 @@
         "sortBy": []
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "hide": false,
@@ -763,6 +773,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -914,6 +925,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -972,6 +984,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -1033,6 +1046,7 @@
         "text": {}
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1095,6 +1109,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1156,6 +1171,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1217,6 +1233,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1306,6 +1323,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -1396,6 +1414,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -1486,6 +1505,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -1597,6 +1617,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1669,6 +1690,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1728,6 +1750,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1783,6 +1806,7 @@
         "textMode": "value_and_name"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "graph": false,
@@ -1859,6 +1883,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",
@@ -1931,6 +1956,7 @@
         "textMode": "value"
       },
       "pluginVersion": "8.0.4",
+      "maxDataPoints": 2,
       "targets": [
         {
           "refId": "A",

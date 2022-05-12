@@ -96,6 +96,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -206,6 +207,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -272,6 +274,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -356,6 +359,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -544,6 +548,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -617,6 +622,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -676,6 +682,7 @@
         },
         "zAxisExtents": {}
       },
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -790,6 +797,7 @@
         "text": {}
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -894,6 +902,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -980,6 +989,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1061,6 +1071,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1131,6 +1142,7 @@
         "text": {}
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1201,6 +1213,7 @@
         "text": {}
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1262,6 +1275,7 @@
         "showUnfilled": true
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1327,6 +1341,7 @@
         }
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1399,6 +1414,7 @@
         "text": {}
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1458,6 +1474,7 @@
         },
         "zAxisExtents": {}
       },
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1537,6 +1554,7 @@
         },
         "zAxisExtents": {}
       },
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1646,6 +1664,7 @@
         "text": {}
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1733,6 +1752,7 @@
         "showUnfilled": true
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1802,6 +1822,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -1929,6 +1950,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -2055,6 +2077,7 @@
         "textMode": "auto"
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -2259,6 +2282,7 @@
         "showHeader": true
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
@@ -2367,6 +2391,7 @@
         "showHeader": true
       },
       "pluginVersion": "8.3.1",
+      "maxDataPoints": 2,
       "targets": [
         {
           "datasource": {
