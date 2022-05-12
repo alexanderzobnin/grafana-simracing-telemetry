@@ -133,6 +133,7 @@ async function publishAssets(fileName, destUrl) {
     },
     maxContentLength: fileStat.size * 2 * 1024 * 1024,
     maxBodyLength: fileStat.size * 2 * 1024 * 1024,
+    timeout: 300000,
   });
 }
 
