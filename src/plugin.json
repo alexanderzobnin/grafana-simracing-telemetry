@@ -9,8 +9,8 @@
   "info": {
     "description": "Plugin for visualizing telemetry data from simracing titles.",
     "author": {
-      "name": "Grafana",
-      "url": "https://grafana.com"
+      "name": "Alexander Zobnin",
+      "url": "https://github.com/alexanderzobnin"
     },
     "keywords": ["simracing", "dirt rally", "iRacing", "forza horizon", "assetto corsa"],
     "logos": {

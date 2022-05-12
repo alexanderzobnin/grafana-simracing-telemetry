@@ -1,6 +1,6 @@
 {
   "name": "grafana-simracing-telemetry",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "Plugin for fetching telemetry data from simracing titles",
   "scripts": {
     "build": "grafana-toolkit plugin:build",
@@ -10,7 +10,7 @@
     "sign": "grafana-toolkit plugin:sign",
     "start": "yarn watch"
   },
-  "author": "Grafana",
+  "author": "Alexander Zobnin",
   "license": "Apache-2.0",
   "devDependencies": {
     "@grafana/data": "8.0.3",
