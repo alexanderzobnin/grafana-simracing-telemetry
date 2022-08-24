@@ -5,6 +5,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/beamng"
 	"time"
 
 	acc "github.com/alexanderzobnin/grafana-simracing-telemetry/pkg/acc/sharedmemory"
@@ -167,6 +168,9 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 	forzaTelemetryChan := make(chan forza.TelemetryFrame)
 	forzaTelemetryErrorChan := make(chan error)
 
+	outGaugeChan := make(chan beamng.OutgaugeStruct)
+	outGaugeErrorChan := make(chan error)
+
 	if req.Path == "dirtRally2" {
 		go dirtrally.RunTelemetryServer(telemetryChan, telemetryErrorChan)
 	} else if req.Path == "acc" {
@@ -176,6 +180,8 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 		go iracing.RunSharedMemoryClient(iracingTelemetryChan, iracingCtrlChan, SharedMemoryUpdateInterval)
 	} else if req.Path == "forzaHorizon5" {
 		go forza.RunTelemetryServer(forzaTelemetryChan, forzaTelemetryErrorChan)
+	} else if req.Path == "beamng" {
+		go beamng.RunTelemetryServer(outGaugeChan, outGaugeErrorChan)
 	}
 
 	lastTimeSent := time.Now()
@@ -200,6 +206,21 @@ func (d *SimracingTelemetryDatasource) RunStream(ctx context.Context, req *backe
 
 			frame := dirtrally.TelemetryToDataFrame(telemetryFrame)
 			lastTimeSent = time.Now()
+			err := sender.SendFrame(frame, data.IncludeAll)
+			if err != nil {
+				log.DefaultLogger.Error("Error sending frame", "error", err)
+				continue
+			}
+
+		case telemetryFrame := <-outGaugeChan:
+			if time.Now().Before(lastTimeSent.Add(time.Second / 60)) {
+				// Drop frame
+				continue
+			}
+
+			frame := beamng.TelemetryToDataFrame(telemetryFrame)
+			lastTimeSent = time.Now()
+			//log.DefaultLogger.Debug("data", "frame", frame)
 			err := sender.SendFrame(frame, data.IncludeAll)
 			if err != nil {
 				log.DefaultLogger.Error("Error sending frame", "error", err)

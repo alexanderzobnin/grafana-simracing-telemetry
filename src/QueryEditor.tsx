@@ -9,12 +9,14 @@ import { dirtRallyOptions } from './dirtRallyOptions';
 import { accOptions } from './accOptions';
 import { iRacingOptions } from './iRacingOptions';
 import { forzaHorizonOptions } from './forzaHorizonOptions';
+import { outGaugeOptions } from './outGaugeOptions';
 
 export const sourceOptions = [
   { label: 'DiRT Rally 2.0', value: 'dirtRally2' },
   { label: 'Forza Horizon 5', value: 'forzaHorizon5' },
   { label: 'Assetto Corsa Competizione', value: 'acc' },
   { label: 'iRacing', value: 'iRacing' },
+  { label: 'BeamNG Drive', value: 'beamng' },
 ];
 
 type Props = QueryEditorProps<DataSource, TelemetryQuery, MyDataSourceOptions>;
@@ -58,6 +60,8 @@ export class QueryEditor extends PureComponent<Props> {
       options = forzaHorizonOptions;
     } else if (source === 'iRacing') {
       options = iRacingOptions;
+    } else if (source === 'beamng') {
+      options = outGaugeOptions;
     }
 
     return (
