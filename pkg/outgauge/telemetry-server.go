@@ -1,4 +1,4 @@
-package beamng
+package outgauge
 
 import (
 	"fmt"

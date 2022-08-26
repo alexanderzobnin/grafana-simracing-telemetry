@@ -17,6 +17,7 @@ export const sourceOptions = [
   { label: 'Assetto Corsa Competizione', value: 'acc' },
   { label: 'iRacing', value: 'iRacing' },
   { label: 'BeamNG Drive', value: 'beamng' },
+  { label: 'OutGauge', value: 'outgauge' },
 ];
 
 type Props = QueryEditorProps<DataSource, TelemetryQuery, MyDataSourceOptions>;
@@ -60,7 +61,7 @@ export class QueryEditor extends PureComponent<Props> {
       options = forzaHorizonOptions;
     } else if (source === 'iRacing') {
       options = iRacingOptions;
-    } else if (source === 'beamng') {
+    } else if (source === 'outgauge' || source === 'beamng') {
       options = outGaugeOptions;
     }
 
