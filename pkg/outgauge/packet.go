@@ -3,8 +3,6 @@ package outgauge
 import (
 	"bytes"
 	"encoding/binary"
-	"encoding/json"
-	"github.com/grafana/grafana-plugin-sdk-go/backend/log"
 	"github.com/grafana/grafana-plugin-sdk-go/data"
 	"time"
 )
@@ -118,17 +116,6 @@ func TelemetryToDataFrame(t OutgaugeStruct) *data.Frame {
 	)
 
 	return frame
-}
-
-func telemetryFrameToMap(frame OutgaugeStruct) map[string]float32 {
-	var frameMap map[string]float32
-	frame = convertTelemetryValues(frame)
-	frameJson, err := json.Marshal(&frame)
-	if err != nil {
-		log.DefaultLogger.Error("Error converting frame", "error", err)
-	}
-	json.Unmarshal(frameJson, &frameMap)
-	return frameMap
 }
 
 func convertTelemetryValues(f OutgaugeStruct) OutgaugeStruct {
