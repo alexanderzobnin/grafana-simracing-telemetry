@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/log"
 	"github.com/grafana/grafana-plugin-sdk-go/data"
-	"golang.org/x/text/encoding/unicode"
 	"time"
 )
 
@@ -89,9 +88,9 @@ func TelemetryToDataFrame(t OutgaugeStruct) *data.Frame {
 
 	frame.Fields = append(frame.Fields,
 		data.NewField("time", nil, []time.Time{time.Now()}),
-		data.NewField("Car", nil, []string{wchart4ToString(t.Car)}),
-		data.NewField("Display1", nil, []string{wchart16ToString(t.Display1)}),
-		data.NewField("Display2", nil, []string{wchart16ToString(t.Display2)}),
+		data.NewField("Car", nil, []string{string(t.Car[:])}),
+		data.NewField("Display1", nil, []string{string(t.Display1[:])}),
+		data.NewField("Display2", nil, []string{string(t.Display2[:])}),
 		data.NewField("Gear", nil, []int8{int8(t.Gear)}),
 		data.NewField("Speed", nil, []float32{t.Speed}),
 		data.NewField("RPM", nil, []float32{t.RPM}),
@@ -178,36 +177,4 @@ func readDashLights(f OutgaugeStruct) DashLights {
 		dl.DL_SPARE = 1
 	}
 	return dl
-}
-
-func wchartToString(b []byte) string {
-	dec := unicode.UTF16(unicode.LittleEndian, unicode.IgnoreBOM).NewDecoder()
-	out, err := dec.Bytes(b)
-	if err != nil {
-		return ""
-	}
-
-	// Strings are null terminated
-	i := bytes.IndexByte(out, 0)
-	if i == -1 {
-		i = len(out)
-	}
-
-	return string(out[:i])
-}
-
-func wchart4ToString(bFixed [4]byte) string {
-	b := make([]byte, 0)
-	for _, v := range bFixed {
-		b = append(b, v)
-	}
-	return wchartToString(b)
-}
-
-func wchart16ToString(bFixed [16]byte) string {
-	b := make([]byte, 0)
-	for _, v := range bFixed {
-		b = append(b, v)
-	}
-	return wchartToString(b)
 }
