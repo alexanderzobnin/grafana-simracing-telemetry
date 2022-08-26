@@ -21,6 +21,7 @@ Currently, plugin supports following games:
 - Assetto Corsa (experimental)
 - iRacing
 - Dirt Rally 2.0
+- BeamNG Drive
 - Forza Horizon 5
 - Forza Horizon 4 (experimental)
 
@@ -118,3 +119,9 @@ Here's instruction from [Race Department](https://www.racedepartment.com/downloa
 
    `<udp enabled="true" extradata="3" ip="127.0.0.1" port="20777" delay="1" />`
 9. Save the file and start the game.
+
+### BeamNG Drive
+
+BeamNG Drive can export telemetry via OutGauge protocol. It should be enabled
+in _Options_ -> _Other_ -> _Utilities_ -> _OutGauge support_. Use default
+values (IP `127.0.0.1` and port `44444`). 
